@@ -1,1 +1,11 @@
 # Question link: https://leetcode.com/problems/two-sum/
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        my_map = {}
+
+        for index, element in enumerate(nums):
+            if target - element in my_map:
+                return (my_map[target - element], index)
+            else:
+                my_map[element] = index

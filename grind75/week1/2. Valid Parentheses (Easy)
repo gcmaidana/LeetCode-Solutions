@@ -1,1 +1,41 @@
 # Question link: https://leetcode.com/problems/valid-parentheses/
+
+class Solution(object):
+    def isValid(self, s):
+        error = False
+        my_stack = []
+        for char in s:
+            if char == '(' or char == '[' or char == "{":
+                my_stack.append(char)
+
+            elif char == ')':
+                if not my_stack:
+                    error = True
+                    break
+                element_before = my_stack.pop()
+                if '(' != element_before:
+                    error = True
+
+            elif char == ']':
+                if not my_stack:
+                    error = True
+                    break
+                element_before = my_stack.pop()
+                if '[' != element_before:
+                    error = True
+
+            elif char == '}':
+                if not my_stack:
+                    error = True
+                    break
+                element_before = my_stack.pop()
+                if '{' != element_before:
+                    error = True
+
+        
+
+        if my_stack or error == True:
+            return False
+
+        return True
+         

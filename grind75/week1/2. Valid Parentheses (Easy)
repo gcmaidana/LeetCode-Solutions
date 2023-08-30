@@ -1,5 +1,9 @@
 # Question link: https://leetcode.com/problems/valid-parentheses/
 
+# Notes
+# This is an O(n) solution since pop() and appending to list are O(1) operations
+# https://wiki.python.org/moin/TimeComplexity
+
 class Solution(object):
     def isValid(self, s):
         error = False

@@ -1,0 +1,27 @@
+# Question link: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+
+# Notes:
+# Best way to approach this problem is to think about it visually looking at a graph
+# If the price to the right is less than the current, then we dont want to use the current
+# price as a frame of reference because we are losing money, so shift the pointers.
+# If the price to the right however is greater than the current price, then check to see if the profit
+# is greater than the max profit so far and update the variable if so. Pretty straight forward but 
+# way easier to see if you look at a graph visually. This video is a great resource to visualize the problem
+# YT: https://www.youtube.com/watch?v=1pkOgXD63yU
+
+class Solution:
+
+
+    def maxProfit(self, prices: List[int]) -> int:
+        left_ptr = 0
+        right_ptr = 1
+        max_profit = 0
+
+        while right_ptr < len(prices):
+            if prices[left_ptr] < prices[right_ptr]:
+                max_profit = max(max_profit, prices[right_ptr] - prices[left_ptr])
+            else:
+                left_ptr = right_ptr
+            right_ptr +=1
+
+        return max_profit

@@ -1,0 +1,42 @@
+        # Question link: https://leetcode.com/problems/valid-palindrome/description/
+        
+        # Notes
+        
+        # First, we convert the string to lowercase because all uppercase letters must be converted to lower case
+
+        # Secondly, we check if a character is alphanumeric, using the function isalnum() then append the character
+        # to the end of our word list or the beginning of our reverse word list using a double ended queue
+
+        # We can't use string concatenatation because strings are immutable, so every time we concatenate
+        # a new string is created. This can lead to quadratic time complexity.
+
+        # We can't use a list and insert to the start of the list because insert is O(n) since all elements have to be
+        # shifted and since we are in a for loop that means our solution would be O(N^2)
+
+        # Lastly, we now have our lowercase string that is only alphanumeric, so we must compare it to the reverse
+        # string
+
+        # Refer to this for the time complexity of the deque (or look it up if this URL changes):
+        # https://wiki.python.org/moin/TimeComplexity
+
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+
+        word = deque()
+        reverse_word = deque()
+        
+        s = s.lower()
+        for char in s:
+            if char.isalnum():
+                word.append(char)
+                reverse_word.appendleft(char)
+            
+        
+        print(word)
+        print(reverse_word)
+        
+        if word == reverse_word:
+            return True
+        return False
+        

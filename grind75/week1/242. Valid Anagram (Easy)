@@ -1,0 +1,43 @@
+# Question link: https://leetcode.com/problems/valid-anagram/submissions/1065455386/
+
+# Notes: I used a two hashmaps to count the frequency of the letters in string s and t, and 
+# then I compared them. Since anagrams contain the same letters and the frequency of letters, the hash maps should
+# be equal if the strings are anagrams. An additional solution I found on the internet sorted the strings
+# and check if they were equal. Since anagrams contain the same letters and frequency of letters, the sorted
+# strings should be equal
+
+
+Solution 1:
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+
+        mapS = {}
+        mapT = {}
+
+        for char in s:
+            if char in mapS:
+                mapS[char] += 1
+            else:
+                mapS[char] = 1
+
+        for char in t:
+            if char in mapT:
+                mapT[char] += 1
+            else:
+                mapT[char] = 1
+            
+        if mapS == mapT:
+            return True
+        return False
+
+
+
+
+Solution 2:
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return sorted(s) == sorted(t)

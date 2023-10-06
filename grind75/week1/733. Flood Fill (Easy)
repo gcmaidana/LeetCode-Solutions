@@ -1,0 +1,34 @@
+# Question link: https://leetcode.com/problems/flood-fill/
+
+# Notes: I had trouble with this problem. I've encountered a problem
+# in the past that used depth first search but I haven't encountered it many times
+# 
+# In short though, this problem reminded me that I need to do more DFS problems
+# so that I can solve these problems without a hassle. I think it just comes down to 
+# a lack of fundamentals regarding DFS.
+
+# Basically, we check are given two input integers, sr and sc, as well as a starting point,
+# image[sr][sc]. We have to check 4-directionally (left, right, up, bottom) from that starting point and see if we have
+# the same color (same result of image[sr][sc]). If it is, we change image[sr][sc] to the new color (also an input, color). We continue to repeat this process recursively for every one of those 4 directional pixels that were the same color as the starting pixel
+
+
+
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+
+        starting_color = image[sr][sc]
+        height = len(image)
+        width = len(image[0])
+        
+        
+
+        def fill(sr, sc, starting_color, color):
+            
+            if 0 <= sr < height and 0 <= sc < width and image[sr][sc] == starting_color and image[sr][sc] != color:
+                image[sr][sc] = color
+                fill(sr + 1, sc, starting_color, color)
+                fill(sr - 1, sc, starting_color, color)
+                fill(sr, sc + 1, starting_color, color)
+                fill(sr, sc - 1, starting_color, color)
+        fill(sr, sc, starting_color, color)
+        return image

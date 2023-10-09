@@ -1,0 +1,23 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+# if we have to look to the left (p and q lower than current root value) then we can check the left sub tree for LCA
+# if we have to look to the right (p and q values higher than current root value) then we can check the right sub 
+# tree for LCA
+# If we have to look at two different sub trees (p is less than root val and q is higher than root val), then we 
+# are already at the LCA 
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    
+        while(root):
+            if p.val > root.val and  q.val > root.val:
+                root = root.right
+            elif p.val < root.val and q.val < root.val:
+                root = root.left
+            else:
+                return root

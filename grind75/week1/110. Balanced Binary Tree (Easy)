@@ -1,0 +1,34 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+# Question link: https://leetcode.com/problems/balanced-binary-tree/
+
+# It may be hard to visualize the recursive DFS and what the code is doing. This video has a good visual if
+# you encounter diffculty visualizing how the code works: https://www.youtube.com/watch?v=LU4fGD-fgJQ  
+
+
+# A binary tree is balanced when the height of the left and right sub trees for a given node differ by not more than 1
+# The way to approach this problem is to use a recursive DFS and start at the bottom nodes and work our way up towards
+# the root node, taking into account the height of the sub trees as we work our way up
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+    
+       def dfs(root):        
+           if root is None:
+               return [True, 0] # empty node we can assume tree is balanced, and height is 0
+           else:
+                print(root.val)
+                left = dfs(root.left)
+                right = dfs(root.right)
+                balanced = (left[0] and right[0] and 
+                            abs(left[1] - right[1]) <= 1)
+           return [balanced, 1 + max(left[1], right[1])]
+        
+
+       return dfs(root)[0]
+       
+        

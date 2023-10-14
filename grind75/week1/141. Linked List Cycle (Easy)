@@ -1,0 +1,43 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+# https://leetcode.com/problems/linked-list-cycle/
+
+# Notes: This one was pretty straightforward, we can use a set to keep track of visited nodes, if we revisit a node,
+# it's already in our set, so we know the linked list is a cycle. Honestly, the hardest part of this problem was 
+# how to approach situations where two different nodes have the same values. The best way to approach this is to 
+# not add the node value to the set, but to add the actual node itself to the set. The first solution is O(n) but 
+# there's also another solution which is in O(1) memory and uses Floyd's Tortoise and Hare algorithm (slow and fast pointer)
+# A really good on the 2nd solution's algorithm: https://www.youtube.com/watch?v=gBTe7lFR3vc
+
+# Solution 1
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        aset = set()
+        while head:
+            
+            if head in aset:
+                return True
+            else:
+                aset.add(head)
+                head = head.next
+        return False
+
+# Solution 2
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        s = head
+        f = head
+
+        while f and f.next:
+            s = s.next
+            f = f.next.next          
+            if s == f:
+                return True              
+        return False
+        

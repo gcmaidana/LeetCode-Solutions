@@ -1,0 +1,33 @@
+# Question link: https://leetcode.com/problems/climbing-stairs/
+
+# Notes: Given that it seems like there's substeps, thinking that this is a DP problem. 
+# I was on the path of using recursion somewhat properly, but I ran into problems cause I wasn't sure how to 
+# use memoization to reduce redundancy and not count subproblems more than once.
+#
+# There's a lot of long videos explaining this problem, but I found this video helped me the most, 
+# it's just very straightforward 
+# https://www.youtube.com/watch?v=in3Fpx8-eOY
+# https://www.youtube.com/watch?v=IRfKXVN2f2g
+
+# N:      1 2 3 4 5 6
+# Answer: 1 2 3 5 8 13
+#
+# We can only arrive at N from either N - 1 or N - 2 (1 or 2 steps), so to count number of distinct steps at N, we add
+# answer of N - 1 and N - 2 to get the answer for N, this makes use of memoization because we store our previous sub
+# problems to answer the new sub problem until we get to N
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+
+        if n <= 2:
+            return n
+
+        previous1 = 1
+        previous2 = 2
+
+        for i in range(2, n):     
+            current = previous1 + previous2
+            previous1 = previous2
+            previous2 = current
+
+        return current

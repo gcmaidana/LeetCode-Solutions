@@ -5,6 +5,8 @@
 
 # Notes: My initial thoughts are to use binary search since we can locate the bad version fast without
 # checking every single version to see if it's bad or good (since we need to minimize API calls)
+# Binary search is efficient because it reduces search space by half at each step, and it's O(logN)
+# which is better than a linear scan's O(n)
 # With this in mind, we need to find the first bad version
 
 # Now let me explain the while loop, basically

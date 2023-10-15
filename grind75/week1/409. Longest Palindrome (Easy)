@@ -1,0 +1,42 @@
+# Question link: https://leetcode.com/problems/longest-palindrome/
+
+# Notes: Okay, one difficulty I can see with a possible solution is that I have to account for lower and/or uppercase
+# for ex: "Aa" is not a palindrome
+#
+# Basically, the way I thought of this problem is that I can have an even number letter frequency like
+# "aa" or "ddaadd"
+# but I could also have a singular character in the middle and the even number letter frequencies are nested around it 
+# like this "bbabb" or "ddbabdd
+#
+# I had the exact correct approach thankfully, my solution just got a little bit messy so I looked up some help
+# for ex I manually made a hashmap of each letter freq instead of using Counter(s)
+#
+# The solution essentially adds all even numbered letter freq to the output, and if encounter a single character
+# we add one and flip the single letter found boolean, however, if we find another odd letter freq
+# we can still add it to the output as long as it's >1 and we add it by subtracting 1 from the odd letter freq
+# for ex, say we have 
+# "baCabZZZ"
+# the output should be 7 because we can make
+# "ZbaCabZ"
+# https://www.youtube.com/watch?v=3GCJ6mHnR_Q
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+
+        c = Counter(s) # counter is a subclass of dict, O(n) to create it
+        output = 0
+        single_character_found = False
+        for count in c.values():
+            if single_character_found:
+                if count > 1:
+                    if count % 2 == 0:
+                        output += count
+                    else:
+                        output += count - 1 
+            else:
+                output += count
+                if count % 2 != 0:
+                    single_character_found = True
+    
+
+        return output

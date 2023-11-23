@@ -1,0 +1,51 @@
+# Question link: https://leetcode.com/problems/majority-element/description/
+# YT Link: https://www.youtube.com/watch?v=7pnhv842keE
+# I used a hashmap to track the number of occurences of a particular number in a list and I returned whichever appears more than n / 2
+# I don't think there can be more than 1 answer so we shouldn't run into any problems, also I don't think we can have an empty 
+# list because my submission didn't raise any errors. I returned a 0 in the event it matters, even though it doesn't for this problem
+
+
+# My solution
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        countmap = {}
+        counter = 0
+
+        for i in nums:
+            counter += 1
+            if i in countmap:
+                countmap[i] += 1
+            else:
+                countmap[i] = 1
+
+
+        counter = counter // 2
+        for key, value in countmap.items():
+            if value > counter:
+                return key
+        return 0
+
+# Solution 2 - Alternate and shorter solution to mine that also uses a hashmap
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        count = {}
+        res, maxCount = 0, 0
+
+        for n in nums:
+            count[n] = 1 + count.get(n, 0)
+            res = n if count[n] > maxCount else res
+            maxCount = max(count[n], maxCount)
+        return res
+
+
+# Solution 3 - Solution with linear time complexity and O(1) space, though this solution is hard to come up on your own, it's the Bayer-Moore Algorithm
+# Check the video for a visualization if you don't understand this solution
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        res, count = 0, 0
+        for n in nums:
+            if count == 0:
+                res = n
+            count += (1 if n == res else -1)
+        return res
+        

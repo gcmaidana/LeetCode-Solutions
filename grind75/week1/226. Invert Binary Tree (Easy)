@@ -25,4 +25,50 @@ class Solution:
         self.invertTree(root.right)
         return root
 
+# 2nd solution post order traversal
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+
+        if not root:
+            return
+
+        left = self.invertTree(root.left)
+        right = self.invertTree(root.right)
+
+        root.right = left
+        root.left = right
+
+        return root
+        
+
+
+# 3rd solution pre order traversal
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+
+        # post order traversal
+
+        if not root:
+            return
+
+        root.left, root.right = root.right, root.left # as long as this is on one line, the right wont get overwritten by the left assignment in python
+        self.invertTree(root.left)
+        self.invertTree(root.right)
+
+        return root
+
         

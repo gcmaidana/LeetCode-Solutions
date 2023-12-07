@@ -7,7 +7,6 @@
 #         self.next = next
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        merged_list = []
         # Handle cases where no merging is possible:
         # if list1 and list2 empty, return nothing
         # else if list1 empty, return list2 

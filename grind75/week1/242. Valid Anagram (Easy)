@@ -1,42 +1,34 @@
 # Question link: https://leetcode.com/problems/valid-anagram/submissions/1065455386/
 
-# Notes: I used a two hashmaps to count the frequency of the letters in string s and t, and 
-# then I compared them. Since anagrams contain the same letters and the frequency of letters, the hash maps should
-# be equal if the strings are anagrams. An additional solution I found on the internet sorted the strings
-# and check if they were equal. Since anagrams contain the same letters and frequency of letters, the sorted
-# strings should be equal
-
-
-Solution 1:
+# Notes: I used a hashmap to count the frequency of the letters in string s then decrement that hashmap count using t.
+# Return false if letter doesnt exist in hashmap when doing the t loop or if count == 0 since we have more in t than in s at that point
 
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
+        hashmapLetters = {}
         if len(s) != len(t):
             return False
 
-        mapS = {}
-        mapT = {}
+
 
         for char in s:
-            if char in mapS:
-                mapS[char] += 1
+            if char not in hashmapLetters:
+                hashmapLetters[char] = 1
             else:
-                mapS[char] = 1
-
+                hashmapLetters[char] += 1
+        
         for char in t:
-            if char in mapT:
-                mapT[char] += 1
+            if char not in hashmapLetters or hashmapLetters[char] == 0:
+                return False
             else:
-                mapT[char] = 1
-            
-        if mapS == mapT:
-            return True
-        return False
+                hashmapLetters[char] -= 1
+
+        return True
 
 
 
 
-Solution 2:
+Solution 2, probably not an acceptable answer in interview to be honest
 
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:

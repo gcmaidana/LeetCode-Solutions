@@ -1,0 +1,92 @@
+# Question link: https://leetcode.com/problems/backspace-string-compare/description/
+
+# My initial solution
+
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        stack1 = []
+        stack2 = []
+
+        for char in s:
+            if stack1 and char == '#':
+                stack1.pop()
+            elif char != '#':
+                stack1.append(char)
+        
+        for char in t:
+            if stack2 and char == '#':
+                stack2.pop()
+            elif char != '#':
+                stack2.append(char)
+        
+        print(stack1)
+        print(stack2)
+
+        if stack1 == stack2:
+            return True
+
+        return False
+
+# Basically my solution but a cleaner way to write it 
+
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        stack 1= []
+        stack2 = []
+        for i in s:
+            if i=='#':
+                if stack1:
+                    stack1.pop()
+            else:
+                stack1.append(i)
+        for i in t:
+            if i=='#':
+                if stack2:
+                    stack2.pop()
+            else:
+                stack2.append(i)
+        return stack1==stack2
+
+
+# The two solutions above are fine, but I'm not exactly sure if an interviewer would let you just compare two stacks like that, e.g. they want a more manual solution
+
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+
+
+        def nextValidChar(str, index):
+            backspace = 0
+            while index >= 0:
+                if backspace == 0 and str[index] != '#':
+                    break
+                elif str[index] == '#':
+                    backspace += 1 
+                else:
+                    backspace -= 1
+                index -= 1
+            return index
+
+        index_s, index_t = len(s) - 1, len(t) - 1
+        while index_s >= 0 or index_t >= 0: 
+            index_s = nextValidChar(s, index_s)
+            index_t = nextValidChar(t, index_t)
+
+            # handle out of bounds index so we dont have to do
+            # if s[index_s] != t[index_t]: below
+            char_s = s[index_s] if index_s >= 0 else ""
+            char_t = t[index_t] if index_t >= 0 else ""
+                
+            if char_s != char_t:
+                return False
+            index_s -= 1
+            index_t -= 1
+        return True
+
+
+        
+
+
+
+
+
+

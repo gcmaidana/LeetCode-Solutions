@@ -1,0 +1,47 @@
+Question link: https://leetcode.com/problems/number-of-1-bits/
+
+# Not sure if this would be considered "cheating" or if it would be allowed in an interview, but this is a simple solution
+
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        ctr = 0
+        for i in bin(n):
+            if i == "1":
+                ctr += 1
+        
+        return ctr
+
+
+# Probably the more straight forward approach interviewers would want me to use
+# Basically mod n by 2, if the last bit is 1, the result will be 1, if the end bit is 0, the result will be 0, so add that to count
+# Right shift by 1 bit and repeat, when n is 0, we've shifted as much as possible so we exit the while loop
+
+
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        ctr = 0
+        while n > 0:
+            ctr += n % 2
+            n = n >> 1
+        
+        return ctr
+
+
+# There is another solution where we don't have to waste time looking at the 0s and only look at the 1s but it's not very easy to come up with without help
+# it's not even worth coming up with because the time complexity is the same ( O(32) which is O(1) )
+
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        ctr = 0
+        while n > 0:
+            n = n & (n - 1)
+            ctr += 1       
+        return ctr
+
+
+
+
+     
+
+
+     

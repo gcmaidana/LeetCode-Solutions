@@ -1,0 +1,17 @@
+class Solution:
+    def halvesAreAlike(self, s: str) -> bool:
+        vowel_set = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' }
+        m = (len(s) / 2) - 1
+        left_count = right_count = 0
+
+        for index, char in enumerate(s):
+            if index <= m:
+                if char in vowel_set:
+                    left_count += 1
+
+            else: # index > m
+                if char in vowel_set:
+                    right_count += 1
+        
+        return left_count == right_count
+        

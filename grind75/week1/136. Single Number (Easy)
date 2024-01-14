@@ -6,7 +6,7 @@
 
 The OR and XOR are both binary operations, but they work a bit differently:
 
-OR (Inclusive OR): This operation returns true if at least one of the operands (inputs) is true. In other words, if either or both of the inputs are true, the output is true. If both inputs are false, the output is false12.
+OR (Inclusive OR): This operation returns true if at least one of the operands (inputs) is true. In other words, if either or both of the inputs are true, the output is true. If both inputs are false, the output is false
 Here’s the truth table for OR:
 
 Table

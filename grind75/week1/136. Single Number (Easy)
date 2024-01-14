@@ -1,0 +1,13 @@
+# Question link: https://leetcode.com/problems/single-number/
+# a num xor with itself is 0, so we will be left with the single number left in the list
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+
+        if len(nums) == 1:
+            return nums[0]
+        
+        res = nums[0]
+        for num in nums[1:]:
+            res = res ^ num
+        return res
+        

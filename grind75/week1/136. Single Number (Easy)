@@ -16,7 +16,10 @@ Input A	Input B	Output (A OR B)
 0	1	1
 1	0	1
 1	1	1
-XOR (Exclusive OR): This operation returns true if exactly one of the operands is true. If both inputs are true or both inputs are false, the output is false12.
+
+
+XOR (Exclusive OR): This operation returns true if exactly one of the operands is true. If both inputs are true or both inputs are false, the output is false
+
 Here’s the truth table for XOR:
 
 Table
@@ -26,13 +29,7 @@ Input A	Input B	Output (A XOR B)
 0	1	1
 1	0	1
 1	1	0
-So, the key difference between OR and XOR is that OR returns true if either or both inputs are true, while XOR returns true only if exactly one of the inputs is true12. 😊
-
-
-
-
-
-
+So, the key difference between OR and XOR is that OR returns true if either or both inputs are true, while XOR returns true only if exactly one of the inputs is true
 
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:

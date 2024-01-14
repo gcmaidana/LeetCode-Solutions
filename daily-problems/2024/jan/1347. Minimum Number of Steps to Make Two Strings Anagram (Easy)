@@ -1,0 +1,19 @@
+# Question link: https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/description/?envType=daily-question&envId=2024-01-13
+
+class Solution:
+    def minSteps(self, s: str, t: str) -> int:
+        smap = {}
+        for char in s:
+            if char in smap:
+                smap[char] += 1
+            else:
+                smap[char] = 1
+        
+        count = 0
+        for char in t:
+            if char in smap and smap[char] > 0:
+                smap[char] -= 1
+            else:
+                count += 1
+        
+        return count

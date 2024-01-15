@@ -1,0 +1,22 @@
+# Question link: https://leetcode.com/problems/find-players-with-zero-or-one-losses/?envType=daily-question&envId=2024-01-15
+
+class Solution:
+    def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
+        # list of players who played
+        played = set()
+
+        losses = collections.Counter()
+
+        for winner, loser in matches:
+            played.add(winner)
+            played.add(loser)
+
+            losses[loser] += 1
+
+        answer = [[], []]
+        for player in played:
+            if losses[player] == 0:
+                answer[0].append(player)
+            elif losses[player] == 1:
+                answer[1].append(player)
+        return answer

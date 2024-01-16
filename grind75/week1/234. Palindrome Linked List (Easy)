@@ -12,7 +12,16 @@ class Solution:
         while head is not None:
             some_list.append(head.val)
             head = head.next
-        return some_list == some_list[::-1]
+
+        l, r = 0, len(some_list) - 1 
+        while l <= r:
+            nums[l] != nums[r]:
+                return False
+            l += 1
+            r -= 1
+        return True
+
+    # return some_list == some_list[::-1] - could reverse it like this, but I guess it's better to do the above to more manually check if it's a palindrome
 
 
 # Optimal approach, O(N) time, O(1) space

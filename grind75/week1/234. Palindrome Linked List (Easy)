@@ -12,7 +12,6 @@ class Solution:
         while head is not None:
             some_list.append(head.val)
             head = head.next
-        n = len(some_list)
         return some_list == some_list[::-1]
 
 

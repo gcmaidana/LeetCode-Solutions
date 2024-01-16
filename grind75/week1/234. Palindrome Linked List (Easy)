@@ -25,4 +25,49 @@ class Solution:
 
 
 # Optimal approach, O(N) time, O(1) space
+# The best way to find the midpoint is to use the slow and fast pointers, when our slow pointer reaches midpoint, our fast pointer will reach the end of the list,
+# this approach uses the Tortoise and Hare Algorithm that we used in a previous problem to break out of a cycle in a linked list
+# basically when we find the mid point and end point, we reverse the second half of the linked list and and it should be equal to the first half
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
 #
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+
+        slow = fast = head
+
+        # find midpoint and end point of the linked list
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        # reverse the second half of the linked list
+        previous = None
+        while slow:
+            tmp = slow.next
+            slow.next = previous
+            previous = slow
+            slow = tmp
+
+       # check if linked list is a palindrome
+       # previous should be at the last node once we exit the while loop above
+       # once right pointer hits None, that means we check the entire right side
+       
+        left = head
+        right = previous
+        while right:
+            if left.val != right.val:
+                return False
+            left = left.next
+            right = right.next
+        return True
+
+
+
+

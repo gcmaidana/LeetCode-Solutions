@@ -19,8 +19,7 @@ class Solution:
 # All non-zero values should end up on the left. So we start with a pointer on the left most position
 # and when we encounter our first non-zero number, we place it at this position and add one to the variable
 # so that now, the next non-zero number gets places into the new left position, etc, until we move all non-zero
-# values into the left side of the list. We use a left pointer to track the left position where we need to place the next non-zero integer 
-# and the right pointer is used to traverse the list
+# values into the left side of the list
 class Solution:
     def moveZeroes(self, nums: List[int]) -> None:
         """
@@ -30,6 +29,6 @@ class Solution:
         left = 0
         for right in range(len(nums)):
             if nums[right] != 0:
-                nums[right], nums[left] = nums[left], nums[right]
+                nums[left], nums[right] = nums[right], nums[left]
                 left += 1
 

@@ -9,8 +9,6 @@
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
 
-        dummyNode
-
         while head is not None:
             some_list.append(head.val)
             head = head.next

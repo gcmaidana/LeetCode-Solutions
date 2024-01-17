@@ -9,9 +9,10 @@ class Solution:
             if num in hmap:
                 hmap[num] += 1
             else:
-                hmap[num] = 1 
+                hmap[num] = 1
+        
 
-        return len(set(hmap.values())) != len(hmap.keys()):
+        return len(set(hmap.values())) == len(hmap.keys())
 
 # cleaner solution
 class Solution:

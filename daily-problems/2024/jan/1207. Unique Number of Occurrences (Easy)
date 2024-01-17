@@ -1,0 +1,24 @@
+# Question link: https://leetcode.com/problems/unique-number-of-occurrences/description/?envType=daily-question&envId=2024-01-17
+
+class Solution:
+    def uniqueOccurrences(self, arr: List[int]) -> bool:
+
+        hmap = {}
+
+        for num in arr:
+            if num in hmap:
+                hmap[num] += 1
+            else:
+                hmap[num] = 1 
+
+        return len(set(hmap.values())) != len(hmap.keys()):
+
+# cleaner solution
+class Solution:
+    def uniqueOccurrences(self, arr: List[int]) -> bool:
+        
+        a = collections.Counter(arr)
+
+
+        return len(set(a.values())) == len(a.keys())
+

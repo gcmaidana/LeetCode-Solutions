@@ -1,0 +1,21 @@
+class Solution:
+    def findErrorNums(self, nums: List[int]) -> List[int]:
+        previous = 0
+        missing_num = 0
+        repeat_num = 0
+        my_set = {}
+        for i in nums:
+            
+            if i in my_set:
+                my_set[i] += 1
+                repeat_num = i
+                
+            else:
+                my_set[i] = 1
+            
+        for i in range(1, len(nums) + 1):
+            if i not in my_set:
+                missing_num = i
+
+        
+        return [repeat_num, missing_num]

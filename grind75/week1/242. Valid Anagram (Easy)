@@ -1,4 +1,4 @@
-# Question link: https://leetcode.com/problems/valid-anagram/submissions/1065455386/
+# Question link: https://leetcode.com/problems/valid-anagram/
 
 # Notes: I used a hashmap to count the frequency of the letters in string s then decrement that hashmap count using t.
 # Return false if letter doesnt exist in hashmap when doing the t loop or if count == 0 since we have more in t than in s at that point

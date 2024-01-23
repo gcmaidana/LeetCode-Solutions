@@ -1,0 +1,39 @@
+
+
+
+
+
+
+
+
+
+
+
+# I couldn't come up with a complete solution by myself, but one way I thought of approaching it is something like this.
+# Use BFS and check if each "side" is mirrored. If you take a given level, the list of nodes should be the same
+# forward and backwards, if theyre not, it's not symmetrical for example
+#     1
+#    /\
+#   2  2
+#   \   \
+#    3   3
+# The last level would read as [null, 3, null, 3]
+# [null, 3, null, 3] != [3, null, 3, null] - the reverse
+# so return false
+
+from collections import deque
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        queue = deque([root])
+        while queue:
+            level = [node.val if node else None for node in queue]
+            print(level)
+            if level != level[::-1]:
+                return False
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                if node:
+                    queue.append(node.left)
+                    queue.append(node.right)
+        return True
+

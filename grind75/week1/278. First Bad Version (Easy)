@@ -1,6 +1,3 @@
-# The isBadVersion API is already defined for you.
-# def isBadVersion(version: int) -> bool:
-
 # Question link: https://leetcode.com/problems/first-bad-version/
 
 # Notes: My initial thoughts are to use binary search since we can locate the bad version fast without

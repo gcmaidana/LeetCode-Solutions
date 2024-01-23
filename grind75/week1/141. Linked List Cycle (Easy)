@@ -1,10 +1,4 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
-# https://leetcode.com/problems/linked-list-cycle/
+# Question link: https://leetcode.com/problems/linked-list-cycle/
 
 # Notes: This one was pretty straightforward, we can use a set to keep track of visited nodes, if we revisit a node,
 # it's already in our set, so we know the linked list is a cycle. Honestly, the hardest part of this problem was 

@@ -1,3 +1,5 @@
+# Question link: https://leetcode.com/problems/symmetric-tree/description/
+
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         def dfs(left, right):

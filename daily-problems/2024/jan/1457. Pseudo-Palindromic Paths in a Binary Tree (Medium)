@@ -1,0 +1,48 @@
+# The trick is to think of what the properties of a palindrome is
+# 2, 3, 2
+# 2, 3, 3, 2
+# notice for cases where there's an odd frequency, there can only be one digit that occurs an odd number of times
+# otherwise we run into problems if two digits have an odd frequency
+# for ex:
+# 2, 3, 3, 3, 2
+# What if we now introduce another digit an odd number of times? It wouldn't be a palindrome
+
+
+class Solution:
+    def pseudoPalindromicPaths (self, root: Optional[TreeNode]) -> int:
+
+        freq = defaultdict(int)
+        odd = 0 # num of digits with odd count
+
+        def dfs(root):
+            nonlocal odd
+            if root is None:
+                return 0
+            
+            
+            freq[root.val] += 1
+            odd_change = 1 if freq[root.val] % 2 == 1 else -1
+            odd += odd_change
+
+            if not root.left and not root.right:
+                res = 1 if odd <= 1 else 0
+            else:
+                res = dfs(root.left) + dfs(root.right)
+            odd -= odd_change
+            freq[root.val] -= 1
+            return res
+
+
+            
+
+
+
+            dfs(root.left)
+            dfs(root.right)
+        
+        return dfs(root)
+
+
+        
+
+    

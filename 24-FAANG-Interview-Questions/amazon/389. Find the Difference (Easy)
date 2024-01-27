@@ -1,0 +1,14 @@
+# Question link: https://leetcode.com/problems/find-the-difference/
+
+
+class Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+
+        smap = Counter(s)
+
+        for char in t:
+            if smap[char] == 0:
+                return char
+            else:
+                smap[char] -= 1
+        

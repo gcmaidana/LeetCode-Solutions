@@ -1,0 +1,25 @@
+# Question link: https://leetcode.com/problems/plus-one/
+
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+
+        carry, index = True, len(digits) - 1
+
+        while carry:
+    
+            if digits[index] == 9:
+                digits[index] = 0
+            else:
+                digits[index] += 1
+                carry = False
+
+            if index == 0 and carry == True:
+                digits.insert(0, 1)
+                carry = False
+            index -= 1
+
+
+
+        return digits
+        

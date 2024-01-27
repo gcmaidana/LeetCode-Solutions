@@ -1,0 +1,18 @@
+# Question link: https://leetcode.com/problems/longest-continuous-increasing-subsequence/
+
+class Solution:
+    def findLengthOfLCIS(self, nums: List[int]) -> int:
+        curr_r = best_r = 0
+        for i in range(len(nums)):
+            print(i)
+            if i == 0 or nums[i] <= nums[i - 1]:
+                curr_r = 1
+            else:
+                curr_r += 1
+                
+            best_r = max(best_r, curr_r)
+
+            
+        
+        return best_r
+        

@@ -78,3 +78,35 @@ class Solution:
   
         return dfs(startRow, startColumn, maxMove)
         
+# alternative solution
+
+class Solution:
+    def findPaths(self, R: int, C: int, maxMove: int, startRow: int, startColumn: int) -> int:
+        MOD = 10 ** 9 + 7
+
+        has_cache = [[[False] * (maxMove + 1) for _ in range(C)] for _ in range(R)]
+        cache = [[[None] * (maxMove + 1) for _ in range(C)] for _ in range(R)]
+        # x -> -1 to R
+        # y -> -1 to C
+        # moves -> 0 to maxMoves
+        def count(x, y, moves):
+            if x < 0 or y < 0 or x >= R or y >= C:
+                return 1
+
+            if moves == maxMove:
+                return 0
+
+            if has_cache[x][y][moves]:
+                return cache[x][y][moves]
+
+            total = 0
+            total += count(x + 1, y, moves + 1)
+            total += count(x - 1, y, moves + 1)
+            total += count(x, y + 1, moves + 1)
+            total += count(x, y - 1, moves + 1)
+
+            has_cache[x][y][moves] = True
+            cache[x][y][moves] = total % MOD
+            return total % MOD     
+
+        return count(startRow, startColumn, 0)

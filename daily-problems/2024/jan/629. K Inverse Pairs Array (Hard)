@@ -1,0 +1,22 @@
+# Question link: https://leetcode.com/problems/k-inverse-pairs-array/description/?envType=daily-question&envId=2024-01-27
+# This problem is very difficult and it requires a lot of optimization in order to reduce the time complexity
+# A lot of the little techniques for the subproblems are not super obvious at first glance, and
+# it requires an understanding of what is happening. I highly recommend this video, it's very lengthy, but it does a good job
+# Video: https://www.youtube.com/watch?v=dglwb30bUKI
+
+class Solution:
+    def kInversePairs(self, n: int, k: int) -> int:
+        MOD = 10 ** 9 + 7
+        prev_arr = [0] * (k + 1)
+        prev_arr[0] = 1 # base case
+        
+        for N in range(1, n + 1):
+            cur_arr = [0] * (k + 1)
+            total = 0 # sliding window size
+            for K in range(0, k + 1):
+                if K >= N:
+                    total -= prev_arr[K - N]
+                total = (total + prev_arr[K]) % MOD
+                cur_arr[K] = total
+            prev_arr = cur_arr
+        return prev_arr[k]

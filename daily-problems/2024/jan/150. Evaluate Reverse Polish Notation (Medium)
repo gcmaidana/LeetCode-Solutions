@@ -15,6 +15,7 @@ class Solution:
                 if token == '+':
                     ans = s2 + s1
                     print(s2, " + ", s1, " = ", ans)
+
                 elif token == '-':
                     ans = s2 - s1
                     print(s2, " - ", s1, " = ", ans)

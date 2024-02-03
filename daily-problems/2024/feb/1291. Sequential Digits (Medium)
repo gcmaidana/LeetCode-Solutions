@@ -1,0 +1,29 @@
+# Question link: https://leetcode.com/problems/sequential-digits/description/?envType=daily-question&envId=2024-02-02
+# https://www.youtube.com/watch?v=Q-ca65wRJyI
+
+# 1, 2, 3
+# 2, 3, 4
+# 3, 4, 5
+# etc
+
+# All a substring of 123456789
+# Think of sliding window, use a queue
+# A stack wouldn't work because numbers need to be sorted when returned
+
+  class Solution:
+    def sequentialDigits(self, low: int, high: int) -> List[int]:
+
+        res = []
+        queue = deque(range(1, 10))
+        while queue:
+            n = queue.popleft()
+            if n > high:
+                continue
+            if low <= n <= high:
+                res.append(n)
+            ones = n % 10
+            if ones < 9:
+                queue.append(n * 10 + (ones + 1))
+        return res
+
+        

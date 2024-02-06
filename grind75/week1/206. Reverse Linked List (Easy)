@@ -28,12 +28,11 @@ class Solution:
         return dummyNode.next
 
 
-# 2. Two pointer solution
+# 2. Two pointer solution (iterative approach)
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        previous, current = None, head
 
-        w# ITERATIVE
+        # ITERATIVE
         # 1 -> 2 -> 3 -> 4 -> 5 -> NONE
         prev = None
         curr = head
@@ -50,15 +49,14 @@ class Solution:
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
-        if not head:
-            return None
+        # RECURSIVE
+        def rec(prev, curr):
+            if curr is None:
+                return prev
+            next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
+            return rec(prev, curr)
         
-        newHead = head
-        if head.next:
-            newHead = self.reverseList(head.next)
-            head.next.next = head
-        head.next = None
-        return newHead
-
-
-        
+        return rec(None, head)

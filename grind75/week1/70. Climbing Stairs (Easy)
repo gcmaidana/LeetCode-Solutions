@@ -22,12 +22,42 @@ class Solution:
         if n <= 2:
             return n
 
-        previous1 = 1
-        previous2 = 2
+        n_minus_one = 2
+        n_minus_two = 1
+        curr_n = 0
+        for i in range(3, n + 1):
+            curr_n = n_minus_one + n_minus_two
+            n_minus_two = n_minus_one 
+            n_minus_one = curr_n
+        return curr_n
 
-        for i in range(2, n):     
-            current = previous1 + previous2
-            previous1 = previous2
-            previous2 = current
+        # n = 1, 1 way
+        # 1
 
-        return current
+        # n = 2, 2 ways
+        # 1 -> 1
+        # 2
+
+        # n = 3, 3 ways
+        # 1 -> 1 -> 1
+        # 1 -> 2
+        # 2 -> 1
+
+        # n = 4, 5 ways
+        # 1 -> 1 -> 1 -> 1
+        # 2 -> 2
+        # 2 -> 1 -> 1
+        # 1 -> 1 -> 2
+        # 1 -> 2 -> 1
+
+        # n = 5, 8 ways
+        # 1 -> 1 -> 1 -> 1 -> 1
+        # 2 -> 2 -> 1
+        # 1 -> 2 -> 2
+        # 2 -> 1 -> 2
+        # 2 -> 1 -> 1 -> 1 -> 1
+        # 1 -> 2 -> 1 -> 1
+        # 1 -> 1 -> 2 -> 1
+        # 1 -> 1 -> 1 -> 2
+
+        # steps(n) = steps(n - 1) + steps(n - 2)

@@ -3,11 +3,6 @@
 
 # 1. My original solution (I used a stack then popped from the stack in order to reverse the linkedlist) Not bad approach but it uses extra space when we don't need to
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         stackz = []
@@ -29,6 +24,7 @@ class Solution:
 
 
 # 2. Two pointer solution (iterative approach)
+
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
@@ -46,6 +42,7 @@ class Solution:
 
 
 # 3. Recursive solution
+
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
@@ -53,10 +50,12 @@ class Solution:
         def rec(prev, curr):
             if curr is None:
                 return prev
-            next_node = curr.next
-            curr.next = prev
-            prev = curr
-            curr = next_node
-            return rec(prev, curr)
+            else:
+                next_node = curr.next
+                curr.next = prev
+                return rec(curr, next_node)
         
         return rec(None, head)
+
+
+        

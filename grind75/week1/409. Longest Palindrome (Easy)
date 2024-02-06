@@ -20,6 +20,8 @@
 # "ZbaCabZ"
 # https://www.youtube.com/watch?v=3GCJ6mHnR_Q
 
+# 1st solution
+
 class Solution:
     def longestPalindrome(self, s: str) -> int:
 
@@ -40,3 +42,22 @@ class Solution:
     
 
         return output
+
+
+# 2nd solution using a set
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+
+        count = 0
+        palset = set()
+        for char in s:
+            if char in palset:
+                palset.remove(char)
+                count += 2
+            else:
+                palset.add(char)
+
+        return count if not palset else count + 1
+
+

@@ -1,51 +1,36 @@
 # Question link: https://leetcode.com/problems/majority-element/description/
 # YT Link: https://www.youtube.com/watch?v=7pnhv842keE
+# YT Link: https://www.youtube.com/watch?v=M1IL4hz0QrE
+
 # I used a hashmap to track the number of occurences of a particular number in a list and I returned whichever appears more than n / 2
-# I don't think there can be more than 1 answer so we shouldn't run into any problems, also I don't think we can have an empty 
-# list because my submission didn't raise any errors. I returned a 0 in the event it matters, even though it doesn't for this problem
+# I don't think there can be more than 1 answer so we won't run into any problems
 
 
 # My solution
 class Solution:
-    def majorityElement(self, nums: List[int]) -> int:
-        countmap = {}
-        counter = 0
+    def majorityElement(self, nums: List[int]) -> int:        
+        c = Counter(nums)
+        size = len(nums) // 2
 
-        for i in nums:
-            counter += 1
-            if i in countmap:
-                countmap[i] += 1
-            else:
-                countmap[i] = 1
-
-
-        counter = counter // 2
-        for key, value in countmap.items():
-            if value > counter:
+        for key, value in c.items():
+            if value > size:
                 return key
-        return 0
-
-# Solution 2 - Alternate and shorter solution to mine that also uses a hashmap
-class Solution:
-    def majorityElement(self, nums: List[int]) -> int:
-        count = {}
-        res, maxCount = 0, 0
-
-        for n in nums:
-            count[n] = 1 + count.get(n, 0)
-            res = n if count[n] > maxCount else res
-            maxCount = max(count[n], maxCount)
-        return res
-
-
-# Solution 3 - Solution with linear time complexity and O(1) space, though this solution is hard to come up on your own, it's the Bayer-Moore Algorithm
+        
+# Solution 2 - Solution with linear time complexity and O(1) space, though this solution is hard to come up on your own, it's the Boyer-Moore Algorithm
 # Check the video for a visualization if you don't understand this solution
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        res, count = 0, 0
-        for n in nums:
-            if count == 0:
-                res = n
-            count += (1 if n == res else -1)
-        return res
-        
+
+        majority_num = 0
+        counter = 0
+
+
+        for number in nums:
+            if counter == 0:
+                majority_num = number
+                counter += 1
+            elif majority_num == number:
+                counter += 1
+            else:
+                counter -= 1
+        return majority_num

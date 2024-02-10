@@ -34,12 +34,9 @@ class Solution:
         ans = 0
         
         for i in range(len(s)):
-            l = r = i
-            ans += self.countPali(s, l, r)
+            ans += self.countPali(s, i, i)
             
-            l = i
-            r = i + 1
-            ans += self.countPali(s, l, r)
+            ans += self.countPali(s, i, i + 1)
             
         return ans
 

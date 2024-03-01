@@ -1,0 +1,19 @@
+# Question link: https://leetcode.com/problems/find-polygon-with-the-largest-perimeter/description/?envType=daily-question&envId=2024-02-15
+
+class Solution:
+    def largestPerimeter(self, nums: List[int]) -> int:
+        # prefix sum helps with checking if all elements up to some number n (after sorting)
+        # is the longest perimeter polygon
+
+        nums.sort()
+        ans = -1
+        total = 0
+        
+        for n in nums:
+            if total > n:
+                ans = total + n
+                
+            total += n
+
+        return ans
+        

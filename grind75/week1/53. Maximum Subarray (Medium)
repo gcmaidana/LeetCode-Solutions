@@ -2,7 +2,7 @@
 
 # Kadane's algorithm
 # Even for a test case like this: [-5, -3, -1]
-# It would work because you're adding the sum of the current number, you're only resetting it the next time around if the sum is less than 0.
+# It would work because you're adding the sum of the current number and checking it's greater than the max seen so far, you're only resetting the sum to 0 the next time around if the sum is less than 0.
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:

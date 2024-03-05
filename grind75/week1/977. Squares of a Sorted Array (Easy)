@@ -1,0 +1,38 @@
+# Question link: https://leetcode.com/problems/squares-of-a-sorted-array/description/
+
+# I solved this pretty easily like this, but squaring each element and sorting is meant to be trivial, there's actually another O(n) solution that uses another approach
+
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        for index, num in enumerate(nums):
+            nums[index] = num * num
+        
+        nums.sort()
+        return nums
+
+
+# Two pointer approach
+
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        l = 0
+        index = r = len(nums) - 1
+        res = [0] * len(nums)
+        
+
+
+        while l <= r:
+            left_square = nums[l] * nums[l]
+            right_square = nums[r] * nums[r]
+
+            if left_square > right_square:
+                res[index] = left_square
+                l += 1
+                
+            else:
+                res[index] = right_square
+                r -= 1
+            index -= 1
+        return res
+
+        

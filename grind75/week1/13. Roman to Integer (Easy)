@@ -11,3 +11,6 @@ class Solution:
             else:
                 count += romanMap[s[i]]
         return count
+
+# Ex: IV -> -1 + 5 -> 4
+#     VI -> 1 + 5 -> 6

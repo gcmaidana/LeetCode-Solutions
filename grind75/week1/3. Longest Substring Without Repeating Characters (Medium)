@@ -1,0 +1,24 @@
+# Question link: https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+
+# This just a classic sliding window problem, not to difficult to comprehend
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        count = 0
+        unique = set()
+        l = 0 
+        for r in range(len(s)):
+            while s[r] in unique:
+                unique.remove(s[l])
+                l += 1
+                
+    
+            unique.add(s[r])
+            count = max(count, r - l + 1) # r - l + 1 gets the window size
+        
+        return count
+
+
+
+
+        

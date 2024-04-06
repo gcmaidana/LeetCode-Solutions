@@ -3,6 +3,7 @@
 
 # https://www.youtube.com/watch?v=HuZ3u2sRIPY
 # Rotting orange problem is very similar in nature, probably easier to understand too
+# https://github.com/gcmaidana/LeetCode-Solutions/blob/main/misc/994.%20Rotting%20Oranges%20(Medium)
 # https://leetcode.com/problems/rotting-oranges/
 
 class Solution:

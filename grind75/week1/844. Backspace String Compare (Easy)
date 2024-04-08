@@ -1,92 +1,40 @@
 # Question link: https://leetcode.com/problems/backspace-string-compare/
 
-# My initial solution
+# Stack could be one approach, but there's a way to solve it in O(1) spacel like this
 
 class Solution:
     def backspaceCompare(self, s: str, t: str) -> bool:
-        stack1 = []
-        stack2 = []
+        s_index = len(s) - 1 
+        t_index = len(t) - 1
+        sBack = 0 
+        tBack = 0 
 
-        for char in s:
-            if stack1 and char == '#':
-                stack1.pop()
-            elif char != '#':
-                stack1.append(char)
-        
-        for char in t:
-            if stack2 and char == '#':
-                stack2.pop()
-            elif char != '#':
-                stack2.append(char)
-        
-        print(stack1)
-        print(stack2)
+        while s_index >= 0 or t_index >= 0:
+            char_s = char_t = None
 
-        if stack1 == stack2:
-            return True
-
-        return False
-
-# Basically my solution but a cleaner way to write it 
-
-class Solution:
-    def backspaceCompare(self, s: str, t: str) -> bool:
-        stack 1= []
-        stack2 = []
-        for i in s:
-            if i=='#':
-                if stack1:
-                    stack1.pop()
-            else:
-                stack1.append(i)
-        for i in t:
-            if i=='#':
-                if stack2:
-                    stack2.pop()
-            else:
-                stack2.append(i)
-        return stack1==stack2
-
-
-# The two solutions above are fine, but I'm not exactly sure if an interviewer would let you just compare two stacks like that, e.g. they want a more manual solution
-
-class Solution:
-    def backspaceCompare(self, s: str, t: str) -> bool:
-
-
-        def nextValidChar(str, index):
-            backspace = 0
-            while index >= 0:
-                if backspace == 0 and str[index] != '#':
-                    break
-                elif str[index] == '#':
-                    backspace += 1 
+            while char_s is None and s_index >= 0:
+                if s[s_index] == "#":
+                    sBack += 1
+                elif sBack > 0:
+                    sBack -= 1
                 else:
-                    backspace -= 1
-                index -= 1
-            return index
+                    char_s = s[s_index]
+                s_index -= 1
 
-        index_s, index_t = len(s) - 1, len(t) - 1
-        while index_s >= 0 or index_t >= 0: 
-            index_s = nextValidChar(s, index_s)
-            index_t = nextValidChar(t, index_t)
-
-            # handle out of bounds index so we dont have to do
-            # if s[index_s] != t[index_t]: below
-            char_s = s[index_s] if index_s >= 0 else ""
-            char_t = t[index_t] if index_t >= 0 else ""
-                
+            while char_t is None and t_index >= 0:   
+                if t[t_index] == "#":
+                    tBack += 1
+                elif tBack > 0:
+                    tBack -= 1
+                else:
+                    char_t = t[t_index]
+                t_index -= 1
+            
+            # compare the values
             if char_s != char_t:
                 return False
-            index_s -= 1
-            index_t -= 1
+        
         return True
 
 
         
-
-
-
-
-
-

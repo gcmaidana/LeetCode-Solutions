@@ -1,5 +1,5 @@
 # https://leetcode.com/problems/rotting-oranges/description/
-# This problem is similar to the problem "01 Matrix", so it might help to do this problem first in order to understand the 01 Matrix problem even though it comes later in the list
+# This problem is similar to the problem "01 Matrix", and "Number of Islands" problems. Check those out if you want more practice on BFS matrix problems
 
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:

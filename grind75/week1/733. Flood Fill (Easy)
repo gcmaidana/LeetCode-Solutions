@@ -11,6 +11,8 @@
 # image[sr][sc]. We have to check 4-directionally (left, right, up, bottom) from that starting point and see if we have
 # the same color (same result of image[sr][sc]). If it is, we change image[sr][sc] to the new color (also an input, color). We continue to repeat this process recursively for every one of those 4 directional pixels that were the same color as the starting pixel
 
+# Update: I feel comfortable with DFS and almost all easy problems. Going through Grind75 helps a lot. :-)
+
 
 
 class Solution:

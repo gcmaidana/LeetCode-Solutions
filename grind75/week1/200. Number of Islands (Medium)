@@ -1,4 +1,4 @@
-# Question link: https://leetcode.com/problems/number-of-islands/description/
+# Question link: https://leetcode.com/problems/number-of-islands/
 
 # This BFS on a Matrix type problem is similar to both:
 # 1. 01 Matrix
@@ -26,7 +26,7 @@ class Solution:
                 for dr, dc in directions:
                     r = row + dr
                     c = col + dc
-                    if (r in range(ROWS) and c in range(COLS) and grid[r][c] == "1" and (r, c) not in visited):
+                    if (0 <= r < ROWS and 0 <= c < COLS and grid[r][c] == "1" and (r, c) not in visited):
                         q.append((r, c))
                         visited.add((r, c))
 
@@ -44,4 +44,3 @@ class Solution:
                     
 
         
-

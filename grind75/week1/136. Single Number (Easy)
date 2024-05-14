@@ -41,4 +41,15 @@ class Solution:
         for num in nums[1:]:
             res = res ^ num
         return res
+
+# Alternate (but same solution)
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+
+        x = 0 
+        for i in nums:
+            x ^= i
+        return x
+
+        
         

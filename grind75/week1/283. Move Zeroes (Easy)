@@ -1,25 +1,33 @@
 # Question link: https://leetcode.com/problems/move-zeroes/
 
-# So we have to modify the list without using extra space
-
-# One problem I have is I had an initial solution like this below, but removing an element at a specific index is O(n) so in a for loop it's O(n^2) solution
+# All non-zero values should end up on the left. So we start with a pointer on the left most position
+# and when we encounter our first non-zero number, we place it at this position and add one to the variable
+# so that now, the next non-zero number gets places into the new left position, etc, until we move all non-zero
+# values into the left side of the list
 
 class Solution:
     def moveZeroes(self, nums: List[int]) -> None:
         """
         Do not return anything, modify nums in-place instead.
         """
-        for index, number in enumerate(nums):
-            if number == 0:
-                nums.pop(index)
-                nums.append(0)
-                
+        l = 0
+        r = 1
+        while r < len(nums):
+                if nums[l] == 0:
+                    if nums[r] != 0:
+                        nums[l], nums[r] = nums[r], nums[l]
+                        l += 1
+                        r = l + 1
+                    else:
+                        r += 1
+
+                else:
+                    l += 1
+                    r = l + 1
+        return nums
 
 
-# All non-zero values should end up on the left. So we start with a pointer on the left most position
-# and when we encounter our first non-zero number, we place it at this position and add one to the variable
-# so that now, the next non-zero number gets places into the new left position, etc, until we move all non-zero
-# values into the left side of the list
+
 class Solution:
     def moveZeroes(self, nums: List[int]) -> None:
         """

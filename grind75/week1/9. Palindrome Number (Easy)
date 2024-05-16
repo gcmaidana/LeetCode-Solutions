@@ -1,60 +1,19 @@
 # Question link: https://leetcode.com/problems/palindrome-number/description/
 
-# The first solution can work, but it also asks if we can solve it without converting int to string
+# Reverse the number and compare the reversed number to x
 
 class Solution:
     def isPalindrome(self, x: int) -> bool:
-        l = 0
-        strx = str(x)
-        r = len(str(x)) - 1
 
-        while l < r:
-            if strx[l] != strx[r]:
-                return False
-            r -= 1
-            l += 1
-        
-        return True
-
-
-# Solution without converting int to string
-
-# 122[1] = 1221 % 10 = 1 find right most digit
-#  [1]221 = 1221 / 1000 = 1 find left most digit 
-
-# when we are doing division, we divide by whatever range we're in,
-# 100s = divide by 100 
-# 1000s = divide by 1000, etc
-# every iteration the dividing number will lose to digits 1000 -> 10 , or 100 -> 1, etc
-# the % part is always by 10
-
-# check if l = r are equal
-# if they are, that's good, now to remove the leftmost and rightmost digit
-# 1221 % 1000 = 221
-# 221 // 10 = 2
-# we did it, we have 2 now.
-# now,
-class Solution:
-    def isPalindrome(self, x: int) -> bool:
         if x < 0:
             return False
-        
-        divider = 1
-        while x > 10 * divider:
-            divider *= 10
-        while x:
-            # left_most_digit = x // divider
-            # right_most_digit = x % 10
-            # we dont need to explicitly declare these variables, we can just add this to the
-            # if statement to check if they're equal
 
-            if x // divider != x % 10:
-                return False
-            
-            # x = x % divider
-            # x = x // (divider // 10)
-            # can be rewritten on the same line like below
-            x = (x % divider) // 10
-            divider = divider / 100
-        return True
+        dummy_x = x
+        reversed_number = 0
+
+        while dummy_x:
+            reversed_number = reversed_number * 10 + dummy_x % 10
+            dummy_x = dummy_x // 10
+        
+        return x == reversed_number
         

@@ -29,4 +29,12 @@ class Solution:
             res += (i - nums[i])
 
         return res
+
+# alternatively can write it like this if easier to read
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        sumN = 0
+        for i in range(len(nums) + 1):
+            sumN += i
+        return sumN - sum(nums)
         

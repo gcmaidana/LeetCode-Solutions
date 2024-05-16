@@ -1,17 +1,25 @@
 # Question link: https://leetcode.com/problems/missing-number/
 
-# This question was sort of easy to solve, it's similar to a subproblem of one of the daily problems I've done recently
-# https://leetcode.com/problems/set-mismatch/
-
+# Use XOR to "cancel out" each number that appears in the nums and the numbers from 0 up to and including the length of the array
+# For example if our input is [0, 1, 3] we want to XOR that with [0,1, 2, 3] and we will get 2
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        mymap = Counter(nums)
-        for i in range(0, len(nums) + 1):
-            if mymap[i] == 0:
-                return i
+        res = 0
 
-# In terms of using O(1) space complexity, I don't remember how to solve it, but I know there's a 
-# mathematical formula to use that you can use to find the missing number without any data structures, but I forgot how to derive it
+        for i in nums:
+            res ^= i
+
+        for i in range(len(nums)+ 1 ):
+            res ^= i
+        
+        return res
+
+        
+
+# An alternative solution is take the sum from 0 up to and including the length of the array and subtract the sum of the input array and we will be left with the missing number
+# For example, if our input array was [0, 1, 3] we would do
+#
+# (0 + 1 + 2 + 3) - (0 + 1 + 3) = 2
 
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:

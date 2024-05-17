@@ -17,4 +17,42 @@
                 r -= 1      
         return True
 
+# If you were not allowed to use built-in Python functions, you could use the ASCII values to do the comparison.
+# Lowercase letter ASCII values are 32 away from upper case letters, to go from upper -> lower we take upper ascii value and add 32
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        l = 0
+        r = len(s) - 1
+
+        while l < r:
+
+            if not self.alphaNumeric(s[l]):
+                l += 1
+            elif not self.alphaNumeric(s[r]):
+                r -= 1
+            else:
+                left = s[l]
+                right = s[r]
+                if (ord('A') <= ord(left) <= ord('Z')):
+                    left = chr(ord(left) + 32)
+                if (ord('A') <= ord(right) <= ord('Z')):
+                    right = chr(ord(right) + 32) 
+                if left != right:
+                    print(left)
+                    print(right)
+                    return False
+
+                l += 1
+                r -= 1
+
+        return True
+
+    def alphaNumeric(self, char):
+        return ((ord('A') <= ord(char) <= ord('Z') or
+                    ord('a') <= ord(char) <= ord('z') or
+                    ord('0') <= ord(char) <= ord('9'))
+                    )
+                    
+        
             

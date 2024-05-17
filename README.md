@@ -1,6 +1,6 @@
 # LeetCode Solutions
 
-Currently going through the [Grind 75 list](https://www.techinterviewhandbook.org/grind75?weeks=26&hours=40). Doing all 169 questions (set the schedule to 26 weeks and 40 hours per week to see all questions). Currently on week2 section.
+Currently going through the [Grind 75 list](https://www.techinterviewhandbook.org/grind75?weeks=26&hours=40). Doing all 169 questions (set the schedule to 26 weeks and 40 hours per week to see all questions).
 
 All questions will be done in Python, unless there's a reason to use another language.
 

@@ -4,7 +4,7 @@ Currently going through the [Grind 75 list](https://www.techinterviewhandbook.or
 
 All questions will be done in Python and C++. I initially started doing these problems in Python and will continue doing so, but I'm starting to incorporate C++ because I would like to work in the games industry, or do embedded work, preferably, and those fields use C++ heavily. My plans are just to do specific questions first in Python to understand the algorithm/approach, then try it again in C++.
 
-[Time complexity of built in Python functions](https://wiki.python.org/moin/TimeComplexity) (This is mainly for me so that I can reference it when reviewing a solution) 
+[Time complexity of built in Python functions](https://wiki.python.org/moin/TimeComplexity)
 
 [C++ Standard Library headers reference](https://en.cppreference.com/w/cpp/header)
 

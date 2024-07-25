@@ -25,7 +25,7 @@ class Solution:
             left_square = nums[l] * nums[l]
             right_square = nums[r] * nums[r]
 
-            if left_square > right_square:
+            if left_square > right_square: # this comparison can also be done with absolute values of the elements
                 res[index] = left_square
                 l += 1
                 
@@ -35,4 +35,25 @@ class Solution:
             index -= 1
         return res
 
+
+# Same solution but different approach, you can solve this problem in a variety of ways
+
+
+        class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        l = 0
+        r = len(nums) - 1
+        ans = []
+
+        while l <= r:
+            left = nums[l] ** 2
+            right = nums[r] ** 2
+
+            if left > right:
+                ans.append(left)
+                l += 1
+            else:
+                ans.append(right)
+                r -= 1
+        return ans[::-1]
         

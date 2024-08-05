@@ -8,4 +8,4 @@ All questions will be done in Python and C++. I initially started doing these pr
 
 [C++ Standard Library headers reference](https://en.cppreference.com/w/cpp/header)
 
-[In order to make sure I understand the solutions I write (or get help on), I have made videos for the problems. I'm currently working through week1 still](https://www.youtube.com/watch?v=bnUYU_tWx_8&list=PLqFVVG199Z-28y1T7hHEX7epTgOcOl2uE)
+[In order to make sure I understand the solutions I write (or get help on), I have made videos for the problems. I'm currently working through week1 still](https://www.youtube.com/@gcmaidana/playlists)

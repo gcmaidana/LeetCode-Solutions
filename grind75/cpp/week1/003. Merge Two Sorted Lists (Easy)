@@ -13,11 +13,7 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        // edge cases
-        if (!list1 && !list2) return {};
-        if(!list1) return list2;
-        if(!list2) return list1;
-        
+   
 
         ListNode* dummyNode = new ListNode(0);
         ListNode* tail = dummyNode; // used to iterate and add to the merge list

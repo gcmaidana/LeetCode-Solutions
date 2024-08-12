@@ -13,7 +13,7 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        // base case
+        // edge case (not a constraint in this problem)
         if (root == NULL)
         {
             return 0;

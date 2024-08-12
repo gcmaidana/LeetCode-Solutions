@@ -17,7 +17,6 @@ public:
 
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
         int startingPixel = image[sr][sc];
-        int height = image[sr][0];
         fill(image, sr, sc, startingPixel, color);
         return image;
         

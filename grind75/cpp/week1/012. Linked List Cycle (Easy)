@@ -16,7 +16,7 @@ public:
         auto s = head;
         auto f = head;
 
-        while(f->next != NULL && f->next->next != NULL)
+        while(f != NULL && f->next != NULL)
         {
             s = s->next;
             f = f->next->next;

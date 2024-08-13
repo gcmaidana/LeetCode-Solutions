@@ -1,7 +1,6 @@
 // Problem link: https://leetcode.com/problems/implement-queue-using-stacks/
 // This problem is pretty tedious and I don't see much learning value in it, don't waste too much time on it
 
-#include <stack>
 class MyQueue {
 public:
 

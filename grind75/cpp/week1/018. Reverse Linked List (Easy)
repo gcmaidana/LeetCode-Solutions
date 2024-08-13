@@ -1,5 +1,6 @@
 // Problem link: https://leetcode.com/problems/reverse-linked-list/
 
+// Iterative
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -25,6 +26,33 @@ public:
         }
 
         return prev;
+        
+    }
+};
+
+// Recursive
+
+class Solution {
+public:
+
+    ListNode* rec(ListNode* prev, ListNode* curr)
+    {
+        if(curr == NULL)
+        {
+            return prev;
+        }
+        else
+        {
+            ListNode* nextNode = curr->next;
+            curr->next = prev;
+            return rec(curr, nextNode);
+        }
+
+    }
+
+    ListNode* reverseList(ListNode* head) {
+
+        return rec(NULL, head);
         
     }
 };

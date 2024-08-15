@@ -1,0 +1,23 @@
+// Problem link: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int count = 0;
+        std::unordered_set<char> unique;
+        int l = 0;
+        for(int r = 0; r < s.length(); r++)
+        {
+            while(unique.find(s[r]) != unique.end())
+            {
+                unique.erase(s[l]);
+                l += 1;
+            }
+
+            unique.insert(s[r]);
+            count = std::max(count, r - l + 1); // r - l + 1 gets window size
+        }
+
+        return count;
+    }
+};

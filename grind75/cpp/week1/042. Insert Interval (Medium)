@@ -1,0 +1,29 @@
+// Problem link: https://leetcode.com/problems/insert-interval/
+
+ class Solution {
+public:
+    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+        int start = 0, i = 0;
+        int end = 1;
+        while(i < intervals.size())
+        {
+            if (newInterval[start] <= intervals[i][end])
+            {
+                if(newInterval[end] < intervals[i][start])
+                {
+                    break;
+                }
+                newInterval[start] = std::min(newInterval[start], intervals[i][start]);
+                newInterval[end] = std::max(newInterval[1], intervals[i][end]);
+                intervals.erase(intervals.begin() + i);
+            }
+            else
+            {
+                i += 1;
+            }
+        }
+        
+        intervals.insert(intervals.begin() + i, newInterval);
+        return intervals;
+    }
+};

@@ -1,0 +1,63 @@
+// Problem link: https://leetcode.com/problems/course-schedule/description/
+
+class Solution {
+public:
+    std::unordered_map<int, std::vector<int>> courseMap;
+    std::unordered_set<int> visited;
+
+    bool dfs(int curr_course)
+    {
+        if(visited.find(curr_course) != visited.end())
+        {   
+            return false;
+        }
+
+        if(courseMap[curr_course].empty())
+        {
+            return true; // no prereqs
+        }
+
+        visited.insert(curr_course);
+
+        for(int prereq : courseMap[curr_course])
+        {
+            if(!dfs(prereq)) 
+            { 
+                return false; // loop detected
+            }
+        }
+
+        visited.erase(curr_course);
+        courseMap[curr_course].clear();
+        return true;
+
+
+    }
+
+
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+
+        // Initialize courseMap with empty lists
+        for(int i = 0; i < numCourses; i++)
+        {
+            courseMap[i] = std::vector<int>();
+        }
+
+        // Fille courseMap with prereqs
+        for(const auto& pair : prerequisites)
+        {
+            int course = pair[0];
+            int prereq = pair[1];
+            courseMap[course].push_back(prereq);
+        }
+
+
+        for(int i = 0; i < numCourses; i++)
+        {
+            if(!dfs(i)) { return false; }
+        }
+
+        return true;
+        
+    }
+};

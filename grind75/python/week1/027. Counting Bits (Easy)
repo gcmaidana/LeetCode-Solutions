@@ -26,7 +26,7 @@ class Solution:
         dp = [0] * (n + 1)
         dp[1] = 1
         next_power_of_two = 2
-        previous_power_of_two = 2
+        previous_power_of_two = 1
 
         for i in range(2, n + 1):
             if i == next_power_of_two:

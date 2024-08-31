@@ -16,10 +16,10 @@ class Solution:
             
             if arr[i] <= target:
                 tmpArray.append(arr[i])
-                dfs(i, arr, target - arr[i], ans, tmpArray)
+                dfs(i, arr, target - arr[i], ans, tmpArray) // pick
                 tmpArray.pop()
             
-            dfs(i + 1, arr, target, ans, tmpArray)
+            dfs(i + 1, arr, target, ans, tmpArray) // not pick
 
         tmpArray = []
         dfs(0, candidates, target, ans, tmpArray)

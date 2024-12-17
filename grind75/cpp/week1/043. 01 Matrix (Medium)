@@ -5,7 +5,7 @@ public:
     vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
         int ROWS = mat.size();
         int COLS = mat[0].size();
-        std::queue<std::pair<int, int>> queue;
+        std::queue<std::pair<int, int>> q;
         vector<vector<int>> directions = { {0,1}, {0, -1}, {1, 0}, {-1, 0} };
 
 
@@ -15,7 +15,7 @@ public:
             {
                 if(mat[r][c] == 0)
                 {
-                    queue.push({r,c});
+                    q.push({r,c});
                 }
                 else
                 {
@@ -24,12 +24,12 @@ public:
             }
         }
 
-        while(!queue.empty())
+        while(!q.empty())
         {
-            std::pair<int, int> front = queue.front();
+            std::pair<int, int> front = q.front();
             int row = front.first;
             int col = front.second;
-            queue.pop();
+            q.pop();
 
             // check each direction and do something...
             for(const auto& direction : directions)
@@ -40,7 +40,7 @@ public:
                 int c = col + dc;
                 if(0 <= r && r < ROWS && 0 <= c && c < COLS && mat[r][c] == -1)
                 {
-                    queue.push({r, c});
+                    q.push({r, c});
                     mat[r][c] = mat[row][col] + 1;
                 }
             }
@@ -50,4 +50,3 @@ public:
         
     }
 };
-

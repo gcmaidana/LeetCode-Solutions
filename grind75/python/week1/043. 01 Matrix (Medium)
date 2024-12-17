@@ -11,26 +11,27 @@ class Solution:
 
         ROWS = len(mat)
         COLS = len(mat[0])
-        queue = deque()
-        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
-
+        q = deque()
+        directions = [(0,1), (0,-1), (1,0), (-1,0)]
 
         for r in range(ROWS):
             for c in range(COLS):
                 if mat[r][c] == 0:
-                    queue.append((r, c))
+                    q.append((r,c))
                 else:
-                    mat[r][c] = float('INF')
+                    mat[r][c] = float('-INF')
         
-        while queue:
-            row, col = queue.popleft()
+        while q:
+            row, col = q.popleft()
             for dr, dc in directions:
-                r, c = row + dr, col + dc
-                if 0 <= r < ROWS and 0 <= c < COLS and mat[r][c] == float('INF'):
-                    queue.append((r, c))
+                r = dr + row
+                c = dc + col
+                if 0 <= r < ROWS and 0 <= c < COLS and mat[r][c] == float('-INF'):
+                    q.append((r,c))
                     mat[r][c] = mat[row][col] + 1
-                    
+        
         return mat
+    
 
 
         

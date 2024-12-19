@@ -1,32 +1,5 @@
 # Question link: https://leetcode.com/problems/k-closest-points-to-origin/description/
 
-
-# This is how I solved it, I'm not sure if there's a way to use less space, there probably is, I find it, I'll post a more optimal solution below mine
-# We don't have to take the square root to find the smallest numbers, so it's unnecessary computation
-
-class Solution:
-    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-
-        myPoints = []
-        ans = []
-        for x, y in points:
-
-            z = (x ** 2) + (y ** 2)
-
-            print("z is ", z)
-            myPoints.append((z, x, y))
-        
-        myPoints.sort()
-
-        for z, x, y in myPoints:
-            if k == 0:
-                return ans
-            ans.append((x,y))
-            k -= 1
-        return ans
-
-# Optimal solution - Use a minheap
-
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
 

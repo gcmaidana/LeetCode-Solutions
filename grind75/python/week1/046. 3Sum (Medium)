@@ -13,8 +13,8 @@ class Solution:
     
         for index, num in enumerate(nums):
 
-            # if num is positive, no addition of positive numbers can give us 0 (because nums is sorted)
-            if num > 0: 
+            # if num is positive, no addition of p
+            if num > 0:
                 break
 
             elif index > 0 and num == nums[index - 1]: 
@@ -26,8 +26,11 @@ class Solution:
                 if threeSum == 0: # 
                     ans.append((num, nums[l], nums[r]))
                     l += 1
+                    r -= 1 
                     while nums[l] == nums[l - 1] and l < r:
                         l += 1
+                    while nums[r] == nums[r + 1] and l < r:
+                        r -= 1
                 elif threeSum < 0:
                     l += 1
                 else:

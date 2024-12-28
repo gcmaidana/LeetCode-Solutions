@@ -13,7 +13,7 @@ class Solution:
     
         for index, num in enumerate(nums):
 
-            # if num is positive, no addition of p
+            # if num is positive, no addition will make the number position (numbers to right are more positive because we sorted)
             if num > 0:
                 break
 

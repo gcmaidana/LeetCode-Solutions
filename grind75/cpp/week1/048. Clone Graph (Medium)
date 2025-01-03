@@ -24,29 +24,37 @@ public:
 class Solution {
 public:
 
-    std::unordered_map<Node*, Node*> oldToNew;
+    std::unordered_map<Node*, Node*> clone;
 
     Node* dfs(Node* node)
     {
-        if(!node) { return NULL; } 
-
-        if(oldToNew.count(node))
+        if(clone.count(node)) 
         {
-            return oldToNew[node];
+            return clone[node];
         }
 
         Node* copy = new Node(node->val);
-        oldToNew[node] = copy;
+        clone[node] = copy;
+
         for(Node* neighbor : node->neighbors)
         {
-            copy->neighbors.push_back(dfs(neighbor));
+            copy->neighbors.push_back(dfs(neighbor));   
         }
 
+
         return copy;
+        
+
     }
 
+
     Node* cloneGraph(Node* node) {
-        
+
+        if(!node) { return NULL; }
+
         return dfs(node);
+    
+        
+        
     }
 };

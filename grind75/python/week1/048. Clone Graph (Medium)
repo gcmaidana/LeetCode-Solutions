@@ -1,8 +1,6 @@
 # Question link: https://leetcode.com/problems/clone-graph/description/
 # YT: https://www.youtube.com/watch?v=mQeF6bN8hMk
 
-# dfs solution
-
 """
 # Definition for a Node.
 class Node:
@@ -14,20 +12,26 @@ class Node:
 from typing import Optional
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        oldToNew = {}
+
+        if not node:
+            return None
+        
+        # old node => new cloned node
+        clone = {}
 
         def dfs(node):
-            if node in oldToNew:
-                return oldToNew[node]
+            if node in clone:
+                return clone[node]
             
             copy = Node(node.val)
-            oldToNew[node] = copy
-            for nei in node.neighbors:
-                copy.neighbors.append(dfs(nei))
-            return copy
-        
-        return dfs(node) if node else None # handle edge case where node can be null
-        
+            clone[node] = copy
 
-        
+            # Handle the neighbors by recursively cloning them
+            for neighbor in node.neighbors:
+                copy.neighbors.append(dfs(neighbor))
+            
+            return copy
+
+
+        return dfs(node)
         

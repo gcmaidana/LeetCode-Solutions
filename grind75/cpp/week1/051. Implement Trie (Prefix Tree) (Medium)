@@ -28,7 +28,7 @@ public:
             {
                 curr->children[ch] = new TrieNode();  
             }
-            // if character IS a child of the current TrieNode we're at, then move onto the child node
+            // character IS a child of the current TrieNode we're at (because we created it or it already existed), then move onto the child node
             curr = curr->children[ch];  
         }
         curr->endOfWord = true;  // Mark the end of the word

@@ -22,7 +22,7 @@ class Trie:
             # create that node
             if char not in curr.children:
                 curr.children[char] = TrieNode()
-            # if char does exist in trie, move forward to that char
+            # move forward to that char either after creating it (or because it already existed)
             curr = curr.children[char]
 
         curr.end_of_word = True

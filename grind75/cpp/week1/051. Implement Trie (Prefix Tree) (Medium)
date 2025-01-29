@@ -1,63 +1,57 @@
 // Problem link: https://leetcode.com/problems/implement-trie-prefix-tree/description/
 
-class TrieNode {
-public:
+class TrieNode() {
     std::unordered_map<char, TrieNode*> children;
-    bool endOfWord;
-
-    TrieNode() {
-        endOfWord = false;        
-    }
+    bool endOfWord = False;
 };
-
 
 class Trie {
 private:
     TrieNode* root;
 public:
-
     Trie() {
         root = new TrieNode();
     }
     
+    // Insert a word into the Trie
     void insert(string word) {
-        TrieNode* cur = root;
-        for(char c : word)
-        {
-            if(cur->children.find(c) == cur->children.end())
-            {
-                cur->children[c] = new TrieNode();
+        TrieNode* curr = root;
+        for (char ch : word) {
+            // if character is not a child of the current TrieNode we're at, create it
+            if (curr->children.find(ch) == curr->children.end()) {
+                curr->children[ch] = new TrieNode();  
             }
-            cur = cur->children[c];
+            // if character IS a child of the current TrieNode we're at, then move onto the child node
+            curr = curr->children[ch];  
         }
-        cur->endOfWord = true;
+        curr->endOfWord = true;  // Mark the end of the word
     }
-    
+
+    // Search for a word in the Trie
     bool search(string word) {
-        TrieNode* cur = root;
-        for(char c : word)
-        {
-            if(cur->children.find(c) == cur->children.end())
-            {
-                return false;
+        TrieNode* curr = root;
+        for (char ch : word) {
+            // if character we're looking for is not a child of the current node we're on, then
+            // the word we're looking for doesn't exist, return false
+            if (curr->children.find(ch) == curr->children.end()) {
+                return false;  // Word not found
             }
-            cur = cur->children[c];
+            // if character IS a child of the current TrieNode we're at, then move onto the child node
+            curr = curr->children[ch];
         }
-        return cur->endOfWord;
+        return curr->endOfWord;  // Return true if the word is valid (ends here)
     }
-    
+
+    // Check if there's any word in the Trie that starts with the given prefix
     bool startsWith(string prefix) {
-        TrieNode* cur = root;
-        for(char c : prefix)
-        {
-            if(cur->children.find(c) == cur->children.end())
-            {
-                return false;
+        TrieNode* curr = root;
+        for (char ch : prefix) {
+            if (curr->children.find(ch) == curr->children.end()) {
+                return false;  // Prefix not found
             }
-            cur = cur->children[c];
+            curr = curr->children[ch];
         }
-        return true;
-    }
+        return true;  // The prefix exists in the Trie
 };
 
 /**

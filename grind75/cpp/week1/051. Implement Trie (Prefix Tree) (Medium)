@@ -3,6 +3,7 @@
 class TrieNode 
 {
 public:
+    // Children are the KEY in the hashmap for a given node. Helps with fast lookups. Think of value (TrieNode) as a placeholder, it's not important.
     std::unordered_map<char, TrieNode*> children;
     bool endOfWord = false;
 };

@@ -4,6 +4,7 @@
 class TrieNode:
 
     def __init__(self):
+        # Children are the KEY in the hashmap for a given node. Helps with fast lookups. Think of value (TrieNode) as a placeholder, it's not important.
         self.children = {}
         self.end_of_word = False
 

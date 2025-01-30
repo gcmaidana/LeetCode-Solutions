@@ -1,3 +1,7 @@
+// File to rename a lot of files so I don't have to do it manually.
+// I used to rename all my week1 files to .cpp and .py files rather than text files.
+// I'll keep this file in my repo in case I need to use it in the future again.
+
 const fs = require("fs");
 const path = require("path");
 

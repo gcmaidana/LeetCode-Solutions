@@ -14,9 +14,6 @@ class Solution:
         return res
 
 
-
-        return count
-
 # optimized
 
 class Solution:
@@ -34,6 +31,3 @@ class Solution:
             res = max(res, r - l + 1)
         return res
 
-
-
-        return count

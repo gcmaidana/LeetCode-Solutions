@@ -1,4 +1,4 @@
-# problem link: https://leetcode.com/problems/longest-repeating-character-replacement/submissions/1537485400/
+# problem link: https://leetcode.com/problems/longest-repeating-character-replacement/
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
         count = {}

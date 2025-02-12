@@ -9,7 +9,7 @@ class Solution:
         prefix = 1
 
         for i in range(len(nums)):
-            ans[i] = ans[i] * prefix
+            ans[i] = prefix
             prefix = nums[i] * prefix
         
         postfix = 1

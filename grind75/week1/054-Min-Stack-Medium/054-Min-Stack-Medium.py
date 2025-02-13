@@ -1,4 +1,4 @@
-# Question link: https://leetcode.com/problems/min-stack/]
+# Question link: https://leetcode.com/problems/min-stack/
 # This one can be a little tricky, I'm not gonna explain it through comments, just watch this video, it's more concise
 # yt: https://www.youtube.com/watch?v=qkLl7nAwDPo
 
@@ -11,8 +11,11 @@ class MinStack:
 
     def push(self, val: int) -> None:
         self.stack.append(val)
-        val = min(val, self.minStack[-1] if self.minStack else val)
-        self.minStack.append(val)
+        if not self.minStack:
+            self.minStack.append(val)
+        else:
+            val = min(val, self.minStack[-1])
+            self.minStack.append(val)
         
 
     def pop(self) -> None:
@@ -26,6 +29,7 @@ class MinStack:
 
     def getMin(self) -> int:
        return self.minStack[-1] 
+
 
 
 # Your MinStack object will be instantiated and called as such:

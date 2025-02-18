@@ -18,8 +18,7 @@ class Solution:
             if node.val <= left or node.val >= right:
                 return False
 
-            return
-            (
+            return (
                 validate(node.left, left, node.val) and
                 validate(node.right, node.val, right)
             )

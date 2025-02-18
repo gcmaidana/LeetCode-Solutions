@@ -11,16 +11,16 @@
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
 
-        def validate(node, left, right):
+        def validate(node, minimum, maximum):
             if node is None:
                 return True
             
-            if node.val <= left or node.val >= right:
+            if node.val <= minimum or node.val >= maximum:
                 return False
 
             return (
-                validate(node.left, left, node.val) and
-                validate(node.right, node.val, right)
+                validate(node.left, minimum, node.val) and
+                validate(node.right, node.val, maximum)
             )
         
 

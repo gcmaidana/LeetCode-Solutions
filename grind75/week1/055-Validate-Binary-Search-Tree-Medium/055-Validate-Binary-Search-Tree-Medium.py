@@ -11,15 +11,20 @@
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
 
-        def valid(node, left, right):
+        def validate(node, left, right):
             if node is None:
                 return True
             
-            if not (node.val < right and node.val > left):
+            if node.val <= left or node.val >= right:
                 return False
-            return (
-            valid(node.left, left, node.val) and
-            valid(node.right, node.val, right)
-        )
-        return valid(root, float('-inf'), float('inf'))
+
+            return
+            (
+                validate(node.left, left, node.val) and
+                validate(node.right, node.val, right)
+            )
+        
+
+        return validate(root, float('-inf'), float('inf'))
+
         

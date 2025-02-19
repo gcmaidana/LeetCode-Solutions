@@ -1,5 +1,7 @@
 // Problem link: https://leetcode.com/problems/validate-binary-search-tree/description/
 
+// Problem link: https://leetcode.com/problems/validate-binary-search-tree/description/
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -14,15 +16,16 @@
 class Solution {
 public:
 
-    bool valid(TreeNode* node, long left, long right)
+    bool valid(TreeNode* node, long minimum, long maximum)
     {
         if(node == NULL) { return true; }
-        if(!(node->val < right && node->val > left))
+
+        if(node->val >= maximum || node->val <= minimum)
         {
             return false;
         }
 
-        return valid(node->left, left, node->val) && valid(node->right, node->val, right);
+        return valid(node->left, minimum, node->val) && valid(node->right, node->val, maximum);
     }
 
     bool isValidBST(TreeNode* root) {

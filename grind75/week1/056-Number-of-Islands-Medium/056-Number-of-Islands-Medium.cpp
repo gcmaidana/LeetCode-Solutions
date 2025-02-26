@@ -48,3 +48,46 @@ public:
         
     }
 };
+
+// More optimal, clean approach, no data structures
+class Solution {
+public:
+
+    int bfs(int r, int c, vector<vector<char>>& grid) 
+    {
+        if(r >= 0 && r < grid.size() &&
+           c >= 0 && c < grid[0].size() &&
+           grid[r][c] == '1')
+        {
+            grid[r][c] = '0';
+            bfs(r + 1, c, grid);
+            bfs(r - 1, c, grid);
+            bfs(r, c + 1, grid);
+            bfs(r, c - 1, grid);
+        }
+        return 0;
+    }
+
+
+    int numIslands(vector<vector<char>>& grid) {
+
+        int ROWS = grid.size();
+        int COLS = grid[0].size();
+        int islands = 0;
+    
+        for (int r = 0; r < ROWS; ++r) 
+        {
+            for (int c = 0; c < COLS; ++c) 
+            {
+                if (grid[r][c] == '1') 
+                {
+                    bfs(r, c, grid);
+                    islands++;
+                }
+            }
+        }
+
+        return islands;
+        
+    }
+};

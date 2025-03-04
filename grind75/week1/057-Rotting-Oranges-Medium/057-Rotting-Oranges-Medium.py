@@ -3,40 +3,44 @@
 
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
-        queue = deque()
-       
-       # time is how much time has passed for our output
-       # fresh is how many fresh oranges we will have initially, so we know if we accounted for all oranges at the end, 
-       # leave this 0 for now
-        time, fresh = 0, 0 
-        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
         ROWS = len(grid)
         COLS = len(grid[0])
+        q = deque()
+        directions = [(0,1), (0,-1), (1,0), (-1,0)]
+        minutes = fresh = 0
+
+        # Count fresh oranges, if rotten then append to queue
         for r in range(ROWS):
             for c in range(COLS):
                 if grid[r][c] == 1:
                     fresh += 1
                 elif grid[r][c] == 2:
-                    queue.append((r, c))
+                    q.append((r,c))
         
-        while queue and fresh > 0:
-
-            for i in range(len(queue)):
-
-                r, c = queue.popleft()
-                
-                # now we go through the adjacent spots to the rotten orange
-                # dr = difference in row
-                # dc = difference in col
+        # while something is in the queue and we have fresh oranges
+        # left to check for
+        while q and fresh > 0:
+            # expand outwards from rotten oranges, and keep going for the new
+            # rotten oranges in the while loop after we exit this for-loop or "minute"
+            for i in range(len(q)):
+                row, col = q.popleft()
                 for dr, dc in directions:
-                    row, col = dr + r, dc + c
-
-                    # now we check to make sure row and col are in bounds, and that the coordinate leads to a non-rotten orange
-                    # since we need to go from fresh->rotten for any adjacent oranges to a rotten one
-                    if row < ROWS and row >= 0 and col < COLS and col >= 0 and grid[row][col] == 1:
-                        grid[row][col] = 2 # turn the fresh orange to rotten!
-                        
-                        queue.append((row, col))
+                    r = row + dr
+                    c = col + dc
+                    if 0 <= r < ROWS and 0 <= c < COLS and grid[r][c] == 1:
+                        grid[r][c] = 2 # this orange is now rotten
+                        q.append((r,c)) # add rotten orange to q
                         fresh -= 1
-            time += 1
-        return time if fresh == 0 else -1
+            minutes += 1
+        
+        # isolated oranges can exist, so we can have fresh > 0
+        return minutes if fresh == 0 else -1
+        
+        
+
+
+        
+
+
+
+        

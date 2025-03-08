@@ -21,9 +21,9 @@ class Solution:
 
             # if combo arr doesnt add up to target yet, lets keep adding the same number
             # recursively until we hit one of the if statements above
-            if(remaining > 0):
-                combo_arr.append(candidates[i])
-                bt(i, combo_arr, remaining - candidates[i]) # pick same number
+            # remaining > 0
+            combo_arr.append(candidates[i])
+            bt(i, combo_arr, remaining - candidates[i]) # pick same number
 
             # to backtrack, we pop the element we came back from and go to the next
             # index

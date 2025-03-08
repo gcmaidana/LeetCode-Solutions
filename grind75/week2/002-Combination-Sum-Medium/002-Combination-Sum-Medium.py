@@ -6,24 +6,32 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         ans = []
+        
+        def bt(i, combo_arr, remaining):
 
-        def dfs(i, arr, target, ans, tmpArray):
-
-            if i == len(arr):
-                if target == 0:
-                    ans.append(tmpArray.copy()) # avoid dereferencing issues
+            # base case
+            # if index out of bounds or combo arr exceeds target, return
+            if(i >= len(candidates) or remaining < 0):
                 return
             
-            if arr[i] <= target:
-                tmpArray.append(arr[i])
-                dfs(i, arr, target - arr[i], ans, tmpArray) // pick
-                tmpArray.pop()
+            # if combo arr adds up exactly to target, copy the combo array to ans array
+            if(remaining == 0):
+                ans.append(combo_arr.copy())
+                return
+
+            # if combo arr doesnt add up to target yet, lets keep adding the same number
+            # recursively until we hit one of the if statements above
+            if(remaining > 0):
+                combo_arr.append(candidates[i])
+                bt(i, combo_arr, remaining - candidates[i]) # pick same number
+
+            # to backtrack, we pop the element we came back from and go to the next
+            # index
+            combo_arr.pop()
+            bt(i + 1, combo_arr, remaining)
             
-            dfs(i + 1, arr, target, ans, tmpArray) // not pick
 
-        tmpArray = []
-        dfs(0, candidates, target, ans, tmpArray)
 
+        bt(0, [], target)
         return ans
-
         

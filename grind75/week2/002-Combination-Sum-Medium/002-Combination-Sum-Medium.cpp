@@ -6,29 +6,37 @@
 class Solution {
 public:
 
-    void dfs(int i, vector<int>& arr, int target, vector<vector<int>>& ans, vector<int>& tmpArray)
+    void dfs(int i, vector<vector<int>>& ans, vector<int>& candidates, vector<int>& tmpComboArray, int remaining)
     {
-        if(i == arr.size())
+        // if out of bounds or combo array exceeds target, return
+        if(i >= candidates.size() || remaining < 0)
         {
-            if(target == 0) { ans.push_back(tmpArray); } // Automatically creates a copy of tmpArray 
             return;
         }
-        if(arr[i] <= target)
+
+        // combination sums up to target, add it to ans and return
+        if(remaining == 0)
         {
-            tmpArray.push_back(arr[i]);
-            dfs(i, arr, target - arr[i], ans, tmpArray);
-            tmpArray.pop_back();
+            ans.push_back(tmpComboArray);   
+            return;
         }
 
-        dfs(i + 1, arr, target, ans, tmpArray);
+        // recursively go into the same index and change remaining to account for the number
+        // we added
+        tmpComboArray.push_back(candidates[i]);
+        dfs(i, ans, candidates, tmpComboArray, remaining - candidates[i]);
+
+        // exit call stack, pop from combo array and add the next index
+        tmpComboArray.pop_back();
+        dfs(i + 1, ans, candidates, tmpComboArray, remaining);
     }
 
 
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) 
     {   
         vector<vector<int>> ans; 
-        vector<int> tmpArray; 
-        dfs(0, candidates, target, ans, tmpArray);
+        vector<int> tmpComboArray; 
+        dfs(0, ans, candidates, tmpComboArray, target);
         return ans;
     }
 };

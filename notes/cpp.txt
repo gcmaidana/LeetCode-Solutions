@@ -1,0 +1,25 @@
+To append to a hashmap in C++ just do
+
+hashmap[key] = {strs[i]};
+
+to append to it when it exists we push back
+
+hashmap[key].push_back(value);
+
+This modifies in place, dont set it equal to something
+std::sort(word.begin(), word.end());
+
+To iterate through a hashmap in C++, we can do
+
+        for(auto [key, value] : sortMap)
+        {
+            ans.push_back(value);
+        }
+
+Additionally can create explicit types like this 
+
+for (pair<string, vector<string>> entry : sortMap) {
+    string key = entry.first;               // Extract the key
+    vector<string> value = entry.second;    // Extract the value
+    ans.push_back(value);                   // Push the value into 'ans'
+}

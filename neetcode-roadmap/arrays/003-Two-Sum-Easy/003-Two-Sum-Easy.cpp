@@ -1,0 +1,19 @@
+// Problem link: https://leetcode.com/problems/two-sum/
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        std::unordered_map<int, int> hmap;
+        int n = nums.size();
+        for(int i = 0; i < n; i++) {
+            // check if complement exist
+            int complement = target - nums[i];
+            if (hmap.count(complement)) {
+                return {hmap[complement], i};
+            }
+
+            hmap[nums[i]] = i;
+        }  
+        return {};
+    }
+};

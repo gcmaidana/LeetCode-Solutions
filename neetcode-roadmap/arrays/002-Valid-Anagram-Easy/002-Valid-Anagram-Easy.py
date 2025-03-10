@@ -1,4 +1,4 @@
-# Question link: https://leetcode.com/problems/valid-anagram/
+# Problem link: https://leetcode.com/problems/valid-anagram/
 
 # Notes: I used a hashmap to count the frequency of the letters in string s then decrement that hashmap count using t.
 # Return false if letter doesnt exist in hashmap when doing the t loop or if count == 0 since we have more in t than in s at that point
@@ -30,7 +30,7 @@ class Solution:
 
 
 
-Solution 2, probably not an acceptable answer in interview to be honest
+# Solution 2, probably not an acceptable answer in interview to be honest
 
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:

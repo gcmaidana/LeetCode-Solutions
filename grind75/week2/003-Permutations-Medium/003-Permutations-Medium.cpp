@@ -85,3 +85,32 @@ public:
         return ans; // Return all permutations
     }
 };
+
+
+// Best approach, swap based!
+
+vector<vector<int>> ans; // To store all permutations
+
+        // Helper function for backtracking
+        function<void(int)> bt = [&](int startIndex) {
+            // Base case: If startIndex reaches the end of nums, add a copy of nums to ans
+            if (startIndex == nums.size()) {
+                ans.push_back(nums);
+                return;
+            }
+
+            // Iterate through the array and generate permutations
+            for (int i = startIndex; i < nums.size(); i++) {
+                // Swap elements at startIndex and i
+                swap(nums[startIndex], nums[i]);
+
+                // Recurse with the next index
+                bt(startIndex + 1);
+
+                // Swap back to restore the original state
+                swap(nums[startIndex], nums[i]);
+            }
+        };
+
+        bt(0); // Start backtracking from index 0
+        return ans; // Return all permutations

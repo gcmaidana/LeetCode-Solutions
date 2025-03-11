@@ -1,35 +1,30 @@
 // Problem link: https://leetcode.com/problems/permutations/
 
+// Least optimal solution but helps you understand what to do
 class Solution {
 public:
+    std::vector<std::vector<int>> permute(std::vector<int>& nums) {
+        std::vector<std::vector<int>> ans;
+        std::vector<int> perm_arr;
 
-    void recurPermute(vector<int> &nums, vector<int> &ds, vector<vector<int>> &ans, vector<bool> &freq) 
-    {
-        if(ds.size() == nums.size()) 
-        {
-            ans.push_back(ds);
-            return;
-        }
-
-        for(int i = 0; i < nums.size(); i++)
-        {
-            if (!freq[i])
-            {
-                freq[i] = true;
-                ds.push_back(nums[i]);
-                recurPermute(nums, ds, ans, freq);
-                ds.pop_back();
-                freq[i] = false;
+        // Backtracking function
+        std::function<void()> bt = [&]() {
+            if (perm_arr.size() == nums.size()) {
+                ans.push_back(perm_arr);
+                return;
             }
-        }
-    }
 
-    vector<vector<int>> permute(vector<int>& nums) {
-        int n = nums.size();
-        vector<vector<int>> ans;
-        vector<int> ds;
-        vector<bool> freq(n, false);
-        recurPermute(nums, ds, ans, freq);
-        return ans;          
+            for (int x : nums) {
+                // Check if x is already in perm_arr
+                if (std::find(perm_arr.begin(), perm_arr.end(), x) == perm_arr.end()) {
+                    perm_arr.push_back(x);
+                    bt();  // Recurse
+                    perm_arr.pop_back();  // Backtrack
+                }
+            }
+        };
+
+        bt();  // Start the backtracking process
+        return ans;
     }
 };

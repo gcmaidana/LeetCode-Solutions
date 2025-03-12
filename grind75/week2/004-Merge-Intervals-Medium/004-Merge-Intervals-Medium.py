@@ -4,10 +4,7 @@ class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
 
         # output is a list of list
-        # what to do if overlap point on point, e.g. 2, and 2
 
-        # fucking disgusting problem can have unsorted start times
-        # like [[1,3], [0,5]]
         intervals.sort()
 
         start = 0
@@ -30,13 +27,3 @@ class Solution:
         
         return ans
 
-        '''
-    1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18
-    .___.
-      ._______.
-                  .____.
-                                      ._________.
-        '''
-        
-
-      

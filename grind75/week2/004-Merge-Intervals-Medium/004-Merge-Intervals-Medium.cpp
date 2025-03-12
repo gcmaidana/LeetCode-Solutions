@@ -4,31 +4,35 @@ class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
 
-        // Sort intervals by the starting value of each interval
-        std::sort(intervals.begin(), intervals.end(), [](const std::vector<int>& a, const std::vector<int>& b) {
-            return a[0] < b[0];
-        });
+        std::sort(intervals.begin(), intervals.end());
+        vector<vector<int>> ans;
 
-        // Output vector to store merged intervals
-        std::vector<std::vector<int>> output;
-        output.push_back(intervals[0]);
+        int start = 0;
+        int end = 1;
+        int prevStart = intervals[0][start];
+        int prevEnd = intervals[0][end];
 
-        // Iterate through the sorted intervals
-        for (size_t i = 1; i < intervals.size(); ++i) {
-            int lastEnd = output.back()[1];  // End value of the most recent interval in the output
-            int start = intervals[i][0];
-            int end = intervals[i][1];
-
-            // If the current interval overlaps with the last one in the output, merge them
-            if (start <= lastEnd) {
-                output.back()[1] = std::max(lastEnd, end);
-            } else {
-                // Otherwise, add the current interval to the output
-                output.push_back({start, end});
+        for(int i = 1; i < intervals.size(); i++)
+        {
+            if (intervals[i][start] <= prevEnd)
+            {
+                prevEnd = std::max(prevEnd, intervals[i][end]);
             }
+            else
+            {
+                ans.push_back({prevStart, prevEnd});
+                prevStart = intervals[i][start];
+                prevEnd = intervals[i][end];
+            }
+
         }
 
-        return output;
+        // Either we merge and don't append quite yet
+        // or append but set the last one and not append it 
+        //  in either case, we have an interval to append
+        ans.push_back({prevStart, prevEnd});
+
+        return ans;
         
     }
 };

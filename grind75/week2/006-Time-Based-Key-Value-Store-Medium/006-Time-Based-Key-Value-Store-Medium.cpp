@@ -1,46 +1,46 @@
 // Problem link: https://leetcode.com/problems/time-based-key-value-store/description/
 
+#include <string>
+#include <unordered_map>
+#include <vector>
+using namespace std;
+
 class TimeMap {
+private:
+    // key -> vector of pairs of (value, timestamp)
+    unordered_map<string, vector<pair<string, int>>> hmap;
+
 public:
-// Store data with key as a string and a vector of pairs {value, timestamp}
-std::unordered_map<std::string, std::vector<std::pair<std::string, int>>> store;
-
-    TimeMap() {
-    
+    TimeMap() 
+    {
+        // Constructor
     }
-    
-    void set(string key, string value, int timestamp) {
-        store[key].push_back({value, timestamp});
+
+
+    void set(string key, string value, int timestamp) 
+    {
+        hmap[key].emplace_back(value, timestamp); // O(1) append
     }
-    
-    string get(string key, int timestamp) {
-         if (store.find(key) == store.end()) {
-            return "";  // If the key doesn't exist, return an empty string
-        }
 
-        const std::vector<std::pair<std::string, int>>& values = store[key];
+    string get(string key, int timestamp)     
+{
+        string ans = "";
+        auto& values = hmap[key]; // Get the vector of (value, timestamp) pairs
 
-        // Binary search to find the right value at or before the timestamp
         int l = 0, r = values.size() - 1;
-        std::string ans = "";
-
         while (l <= r) {
             int m = l + (r - l) / 2;
-            if (values[m].second <= timestamp) {
+            if (values[m].second <= timestamp) 
+            {
                 ans = values[m].first;
-                l = m + 1;  // Continue searching in the right half
-            } else {
-                r = m - 1;  // Continue searching in the left half
+                l = m + 1;
+            } 
+            else 
+            {
+                r = m - 1;
             }
         }
 
-        return ans;  // Return the found answer or an empty string if none fits
+        return ans;
     }
 };
-
-/**
- * Your TimeMap object will be instantiated and called as such:
- * TimeMap* obj = new TimeMap();
- * obj->set(key,value,timestamp);
- * string param_2 = obj->get(key,timestamp);
- */

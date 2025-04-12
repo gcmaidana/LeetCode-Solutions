@@ -1,51 +1,44 @@
 # Problem link: https://leetcode.com/problems/accounts-merge/class UnionFind:
-    def __init__(self, n):
-        self.par = [i for i in range(n)]
-        self.rank = [1] * n
+    # Create Union Find class
+class UF:
+    def __init__(self, N): # N = number of nodes
+        self.parents = list(range(N))
 
     def find(self, x):
-        while x != self.par[x]:
-            self.par[x] = self.par[self.par[x]]
-            x = self.par[x]
-        return x
-        
-    def union(self, x1, x2):
-        p1, p2 = self.find(x1), self.find(x2)
-        if p1 == p2:
-            return False
-        if self.rank[p1] > self.rank[p2]:
-            self.par[p2] = p1
-        elif self.rank[p1] < self.rank[p2]:
-            self.par[p1] = p2
-        else:
-            self.par[p2] = p1
-            self.rank[p1] += 1
-        return True
+        if x != self.parents[x]: # if x is not its own parent
+            self.parents[x] = self.find(self.parents[x]) # path compression
+        return self.parents[x]
+
+    def union(self, child, parent):
+        self.parents[self.find(child)] = self.find(parent)
+
 
 class Solution:
     def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        uf = UF(len(accounts))
+        emailGroup = defaultdict(list) # idx of acc => list of emails
+        email_to_name = {}
 
-        uf = UnionFind(len(accounts))
-        emailToAcc = {} # email -> index of acc
+        # The first value is always the account name, then the emails
+        # So skip the first value
+        for accIdx, account in enumerate(accounts):
+            for email in account[1:]:
 
-        for index, account in enumerate(accounts):
-            for email in account[1:]: # first value of an account is name, so we want to skip that
-
-                if email in emailToAcc:
-                    # perform union find since we found 2 emails that belong to the same name
-                    uf.union(index, emailToAcc[email])
+                if email in email_to_name:
+                    # If this exists, the current accIdx and the one we inserted previously need to be
+                    # unioned
+                    uf.union(accIdx, email_to_name[email])
                 else:
-                    emailToAcc[email] = index
-                    
-        emailGroup = defaultdict(list) # index of acc -> list of emails
-        for email, index in emailToAcc.items():
-            leader = uf.find(index)
+                    email_to_name[email] = accIdx
+        
+        for email, accIdx in email_to_name.items():
+            leader = uf.find(accIdx)
             emailGroup[leader].append(email)
-        
-        res = []
-        for index, emails in emailGroup.items():
-            name = accounts[index][0]
-            res.append([name] + sorted(emailGroup[index])) # array concat
-        return res
 
+        # Remember the output has to be sorted in a specific way
+        ans = []
+        for accIdx, emails in emailGroup.items():
+            name = accounts[accIdx][0]
+            ans.append([name] + sorted(emailGroup[accIdx]))
         
+        return ans

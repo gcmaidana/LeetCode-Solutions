@@ -60,6 +60,9 @@ public:
         unordered_map<int, vector<string>> accountToEmails;
         for (const auto& [email, accIdx] : emailToAccount) 
         {
+            cout << "email im on: " << email << endl;
+            cout << "account idx: " << accIdx << endl;
+            cout << "leader: " << uf.find(accIdx) << endl;
             int root = uf.find(accIdx);
             accountToEmails[root].push_back(email);
         }

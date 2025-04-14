@@ -1,86 +1,76 @@
 // Problem link: https://leetcode.com/problems/accounts-merge/
 
+// Create Union Find Class
 class UnionFind {
 public:
-    vector<int> parent;
-
+    vector<int> parents;
+    
+    // Initialize each node to be its own parent
     UnionFind(int n) 
     {
-        parent.resize(n);
+        parents.resize(n);
         for(int i = 0; i < n; i++)
         {
-            parent[i] = i;
+            parents[i] = i;
         }
     }
 
+    // Find the root parent of node x with path compression
     int find(int x)
     {
-        if(parent[x] != x)
+        if(parents[x] != x)
         {
-            parent[x] = find(parent[x]);
+            parents[x] = find(parents[x]);
         }
-        return parent[x];
+        return parents[x];
     }
 
-    void unite(int x, int y)
+    // Connect the sets containing 'child' and 'parent' by 
+    // pointing the root of 'child' to the root of 'parent'
+    void unite(int child, int parent)
     {
-        parent[find(x)] = find(y);
+        parents[find(child)] = find(parent);
     }
     
 };
 
-
 class Solution {
 public:
     vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
+
         int numAccounts = accounts.size();
         UnionFind uf(numAccounts);
 
-        unordered_map<string, int> emailToAccount;   // Maps email to account index
-
-        // Step 1: Build Union-Find structure based on shared emails
-        for (int i = 0; i < numAccounts; ++i) 
+        unordered_map<string, int> emailToAccount; // Maps email to account index
+        
+        // Build the Union-Find data structure based on shared emails
+        for(int i = 0; i < numAccounts; i++)
         {
-            for (int j = 1; j < accounts[i].size(); ++j) 
-            {  // 0th index is name, not email, skip it
+            for(int j = 1; j < accounts[i].size(); j++)
+            {   // 0th index is name, not email, skip it
                 string email = accounts[i][j];
 
-                if (emailToAccount.count(email)) 
+                if(emailToAccount.count(email)) // Email already seen before
                 {
                     uf.unite(i, emailToAccount[email]);
-                } 
-                else 
+                }
+                else // This email has never been seen before, add email as key, acc idx as value
                 {
                     emailToAccount[email] = i;
                 }
             }
         }
 
-        // Step 2: Group emails by root parent account
+        // Group emails by root parent account
         unordered_map<int, vector<string>> accountToEmails;
-        for (const auto& [email, accIdx] : emailToAccount) 
+        for(const auto& [email, accIdx] : emailToAccount)
         {
             cout << "email im on: " << email << endl;
             cout << "account idx: " << accIdx << endl;
             cout << "leader: " << uf.find(accIdx) << endl;
-            int root = uf.find(accIdx);
-            accountToEmails[root].push_back(email);
         }
 
-        // Step 3: Build final merged accounts result
-        vector<vector<string>> mergedAccounts;
-        for (const auto& [accIdx, emails] : accountToEmails) 
-        {
-            string name = accounts[accIdx][0];
-            vector<string> sortedEmails = emails;
-            sort(sortedEmails.begin(), sortedEmails.end());
-
-            vector<string> merged = { name };
-            merged.insert(merged.end(), sortedEmails.begin(), sortedEmails.end());
-
-            mergedAccounts.push_back(merged);
-        }
-
-        return mergedAccounts;
+        
+        return {};
     }
 };

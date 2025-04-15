@@ -1,5 +1,4 @@
 // Problem link: https://leetcode.com/problems/accounts-merge/
-
 // Create Union Find Class
 class UnionFind {
 public:
@@ -66,11 +65,26 @@ public:
         for(const auto& [email, accIdx] : emailToAccount)
         {
             cout << "email im on: " << email << endl;
-            cout << "account idx: " << accIdx << endl;
-            cout << "leader: " << uf.find(accIdx) << endl;
+            cout << "account index: " << accIdx << endl;
+            cout << "Leader index: " << uf.find(accIdx) << endl;
+            int root = uf.find(accIdx);
+            accountToEmails[root].push_back(email);
         }
 
-        
-        return {};
+        // Build final merged accounts result
+        vector<vector<string>> mergedAccounts;
+        for(const auto& [accIdx, emails] : accountToEmails)
+        {
+            string name = accounts[accIdx][0];
+            vector<string> sortedEmails = emails;
+            sort(sortedEmails.begin(), sortedEmails.end());
+
+            vector<string> merged = { name };
+            merged.insert(merged.end(), sortedEmails.begin(), sortedEmails.end());
+
+            mergedAccounts.push_back(merged);
+        }
+
+        return mergedAccounts;
     }
 };

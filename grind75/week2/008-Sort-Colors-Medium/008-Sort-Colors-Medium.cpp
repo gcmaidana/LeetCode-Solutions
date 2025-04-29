@@ -24,7 +24,7 @@ public:
                 nums[r] = nums[i];
                 nums[i] = tmp;
                 r -= 1;
-                i -= 1;
+                i -= 1; // dont want to increment i below in this case, we dont want i to move because maybe we moved 0 instead of a 1 to the middle, consider this [0,1,2,0]
             }
 
             i += 1;

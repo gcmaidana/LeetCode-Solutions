@@ -1,6 +1,5 @@
 # Problem link: https://leetcode.com/problems/word-break/
 
-# slightly inefficient es
 # Basically start at the empty string, and find the words that be built from there,
 # mark ending index as true, keep doing the same process. If at the end, that index is true, it means
 # there are words that can be used to from the string s, so it should return true, otherwise return false

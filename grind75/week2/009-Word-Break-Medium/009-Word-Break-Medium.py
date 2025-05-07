@@ -11,28 +11,18 @@ class Solution:
         dp[0] = True # empty str can always be segmented
         wordDictSet = set(wordDict) # Use set for O(1) lookup
 
+        # When checking substrings to see if a substring in s is in wordDict,
+        # we dont want to expand our substrings to exceed the length of the longest
+        # word in wordDict, that is just inefficient and a waste of computation, so
+        # lets keep track of the max word length in wordDict so we dont exceed this length
+        # when checking substrings
+        max_word_len = max(len(word) for word in wordDict) if wordDict else 0
+
         for i in range(len(s)):
             if dp[i]:
-                for j in range(i, len(s)):
+                for j in range(i, min(i + max_word_len, len(s))):
                     if s[i:j+1] in wordDictSet:
                         dp[j + 1] = True
 
         
-        return dp[-1]
-
-
-
-# Optimal
-
-def wordBreak(s, wordDict):
-    word_set = set(wordDict)
-    dp = [False] * (len(s) + 1)
-    dp[0] = True
-    
-    for i in range(1, len(s) + 1):
-        for j in range(i):
-            if dp[j] and s[j:i] in word_set:
-                dp[i] = True
-                break
-    
-    return dp[len(s)]
+        return dp[-1] # or alternatively, return dp[len(s)]

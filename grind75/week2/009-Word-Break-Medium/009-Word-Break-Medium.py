@@ -20,9 +20,9 @@ class Solution:
 
         for i in range(len(s)):
             if dp[i]:
-                for j in range(i, min(i + max_word_len, len(s))):
-                    if s[i:j+1] in wordDictSet:
-                        dp[j + 1] = True
+                for j in range(i + 1, min(i + max_word_len + 1, len(s))):
+                    if s[i:j] in wordDictSet:
+                        dp[j] = True
 
         
         return dp[-1] # or alternatively, return dp[len(s)]

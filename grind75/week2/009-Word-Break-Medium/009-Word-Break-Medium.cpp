@@ -28,7 +28,7 @@ public:
         for (int i = 0; i < n; ++i) {
             if (dp[i]) {
                 // Only check substrings up to maxWordLen to avoid unnecessary checks
-                for (int j = i + 1; j <= min(i + maxWordLen, n); j++) {
+                for (int j = i + 1; j < min(i + maxWordLen + 1, n + 1); j++) {
                     if (wordDictSet.find(s.substr(i, j - i)) != wordDictSet.end()) {
                         dp[j] = true;
                     }

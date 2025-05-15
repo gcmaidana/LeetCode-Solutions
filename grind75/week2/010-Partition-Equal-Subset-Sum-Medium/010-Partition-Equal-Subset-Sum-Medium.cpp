@@ -27,7 +27,8 @@ public:
         unordered_set<int> dp;
         dp.insert(0);  // Base case: sum of 0 is always possible
 
-        for (int i = 0; i < nums.size(); i++) {
+        for (int i = 0; i < nums.size(); i++) 
+        {
             // Cannot update dp set while iterating over it, so use a separate set: nextDP
             unordered_set<int> nextDP;
             for (int t : dp) 
@@ -37,7 +38,7 @@ public:
             }
             dp = nextDP;
         }
-
+        print("Possible subset sums:", dp)
         // Final check: was the target sum reachable?
         return dp.count(target) > 0;
     }

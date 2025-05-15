@@ -32,4 +32,29 @@ class Solution:
 
         return True if target in dp else False
 
+
+# Optimal 1-D DP Approach!
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+
+        total = sum(nums)
+
+        if total % 2 != 0:
+            return False
+        
+        target = total // 2
+
+        # dp[i] = True if we can form sum i using some subset of nums
+        dp = [False] * (target + 1)
+        dp[0] = True # base case: sum of 0 is always possible with no elements
+        
+        for num in nums:
+            for j in range(target, num - 1, -1):
+                if dp[j - num]:
+                    dp[j] = True
+        
+
+        return dp[target]
+
         

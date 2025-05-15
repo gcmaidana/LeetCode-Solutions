@@ -1,3 +1,5 @@
+# Problem link: https://leetcode.com/problems/partition-equal-subset-sum/
+
 # Good solution, not the most optimal
 # Most optimal is 1-D DP array
 class Solution:

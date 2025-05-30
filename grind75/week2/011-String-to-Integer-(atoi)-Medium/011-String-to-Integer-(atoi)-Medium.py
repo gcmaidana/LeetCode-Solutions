@@ -3,8 +3,7 @@
 class Solution:
     def myAtoi(self, s: str) -> int: # str -> 32 bit signed int
 
-        # Strip whitespace, it's possible the entire string is whitespace, in the case
-        # return 0
+        # Strip whitespace
         i = 0
         n = len(s)
         while i < n and s[i] == ' ':

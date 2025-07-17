@@ -26,7 +26,7 @@ public:
         while (!q.empty()) {
             int level_len = q.size();
 
-            for (int i = 0; i < level_len; ++i) 
+            for (int i = 0; i < level_len; i++) 
             {
                 TreeNode* node = q.front();
                 q.pop();

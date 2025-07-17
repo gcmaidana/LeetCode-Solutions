@@ -9,7 +9,7 @@
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
 
-        # base case
+        # edge case
         if not root:
             return []
 

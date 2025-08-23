@@ -1,5 +1,9 @@
 # link: https://leetcode.com/problems/longest-palindromic-substring/
 
+# You can technically do this in O(N) using Manacher's Algorithm but I don't see a point in learning obscure algorithms
+# You will likely forget and mess up in an interview, using the O(N^2) approach of expanding outwards is better
+# than the brute force O(N^3). Learn it if yo want, in my opinion, I don't see value in learning the obscure solutions but it does exist so I want to note that.
+
 # To check if a string is a palindrome, we can:
 # 1. start from the outside and compare the two characters OR
 # 2. start in the middle and expand outwards and do the comparison that way

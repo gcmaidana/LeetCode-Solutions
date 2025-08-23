@@ -40,3 +40,36 @@ class Solution:
 
         # string splicing creates a copy, we dont want to be doing that to store the palindrome every time we find a new longest palindrome so do the string splicing down here rather than above, just a little bit more efficient
         return s[start:start + longest_len] 
+
+
+
+# Same code as above but condensed into a function
+
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        longest_len_palindrome = 0
+        start = 0
+
+        def expand(l, r):
+            nonlocal start, longest_len_palindrome
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if (r - l + 1) > longest_len_palindrome:
+                    start = l
+                    longest_len_palindrome = r - l + 1
+                r += 1
+                l -= 1
+
+        for i in range(len(s)):
+            # odd length palindrome
+            l, r = i, i # pointers at center position right now
+            expand(l, r)
+            
+            # even length palindromes
+            l, r = i, i + 1
+    
+            # this is the same code as above, 
+            # only difference is where we set the pointers for odd and even palindromes
+            expand(l, r)
+
+        # string splicing creates a copy, we dont want to be doing that to store the palindrome every time we find a new longest palindrome so do the string splicing down here rather than above, just a little bit more efficient
+        return s[start:start + longest_len_palindrome] 

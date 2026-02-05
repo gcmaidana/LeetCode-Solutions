@@ -2,10 +2,7 @@
 
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        # weird edge case
-        if m == n == 1:
-            return 1
-
+        
         dp = [[1]*n for _ in range(m)]
         print(dp)
 

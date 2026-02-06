@@ -6,7 +6,7 @@ class Solution:
         dp = [[1]*n for _ in range(m)]
         print(dp)
 
-        for r in range(1, m):le
+        for r in range(1, m):
             for c in range(1, n):
     
                 dp[r][c] = dp[r][c - 1] + dp[r - 1][c]

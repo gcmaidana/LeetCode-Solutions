@@ -13,8 +13,7 @@ class Solution:
             # if we are out of position or letter doesn't match what we expect
             if (r >= ROWS or c >= COLS or 
                 r < 0 or c < 0 or 
-                board[r][c] != word[wordPtr] or
-                (r,c) in path):
+                board[r][c] != word[wordPtr]):
                     return False
 
             tmp = board[r][c]

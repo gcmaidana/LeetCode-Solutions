@@ -2,39 +2,35 @@
 class Solution {
 public:
     vector<int> findAnagrams(string s, string p) {
-        // cannot make anagrams if len of p is greater than len of s
-        if (s.length() < p.length()) {
+        // cannot make anagrams if len of p is greater than the len of s
+        if (s.length() < p.length())
             return {};
-        }
-
-        unordered_map<char, int> p_map;
-        unordered_map<char, int> s_map;
+        
+        unordered_map<char, int> pMap;
+        unordered_map<char, int> sMap;
         vector<int> ans;
 
-        // build p_map (equivalent to Counter)
-        for (char c : p) {
-            p_map[c]++;
-        }
+        for (char c : p)
+            pMap[c]++;
+        
+        for(int i = 0; i < s.length(); i++)
+        {
+            sMap[s[i]]++;
 
-        for (int i = 0; i < s.length(); i++) {
-            // add current char to s_map
-            s_map[s[i]]++;
-
-            // remove char that slides out of window
-            if (i >= p.length()) {
+            if(i >= p.length())
+            {
                 char leftChar = s[i - p.length()];
-                if (s_map[leftChar] == 1) {
-                    s_map.erase(leftChar);
-                } else {
-                    s_map[leftChar]--;
-                }
+                if(sMap[leftChar] == 1)
+                    sMap.erase(leftChar);
+                else
+                    sMap[leftChar]--;
             }
 
-            // compare maps
-            if (p_map == s_map) {
+            if(pMap == sMap)
                 ans.push_back(i - p.length() + 1);
-            }
+                 
         }
+
 
         return ans;
     }

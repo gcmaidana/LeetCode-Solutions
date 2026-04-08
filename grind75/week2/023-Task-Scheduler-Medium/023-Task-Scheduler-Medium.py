@@ -24,17 +24,20 @@ class Solution:
                 heapq.heappush(maxHeap, q.popleft()[0])
         return time
 
-
-
-      
-
-
-      
-        
-        
-        
-
-
-
-
 # Most optimal approach
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        # Count frequencies and sort by most frequent
+        t_map = {}
+        for t in tasks:
+            if t in t_map:
+                t_map[t] += 1
+            else:
+                t_map[t] = 1
+        
+        max_freq = max(t_map.values())
+        max_count = list(t_map.values()).count(max_freq)
+
+        # The intuition is really whether we can fill the gaps or not or whether
+        # we have to idle
+        return max(len(tasks), ((max_freq - 1) * (n + 1) + max_count))

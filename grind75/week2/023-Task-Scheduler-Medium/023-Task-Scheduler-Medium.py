@@ -27,7 +27,7 @@ class Solution:
 # Most optimal approach
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
-        # Count frequencies and sort by most frequent
+        # Count frequencies
         t_map = {}
         for t in tasks:
             if t in t_map:

@@ -3,8 +3,7 @@
 # Max heap approach (less efficient)
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
-        # Sort by freq (largest to smallest), use maxHeap and q
-        # when we process a task, we add it to the q along with the time that the task is done
+       
         count = Counter(tasks)
         max_heap = [-cnt for cnt in count.values()]
         heapq.heapify(max_heap)

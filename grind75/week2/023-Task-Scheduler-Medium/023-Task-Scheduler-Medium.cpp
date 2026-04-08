@@ -4,14 +4,11 @@
 class Solution {
 public:
     int leastInterval(vector<char>& tasks, int n) {
-        // Sort by freq (largest to smallest), use maxHeap and q
-        // when we process a task, we add it to the q along with the time that the task is done
         
+    
         unordered_map<char, int> count;
         for (char t : tasks) 
-        {
             count[t]++;
-        }
 
         // max heap (priority queue)
         priority_queue<int> maxHeap;
@@ -36,9 +33,7 @@ public:
                 cnt -= 1;
 
                 if (cnt > 0) 
-                {
                     cooldown.push({cnt, time + n});
-                }
             }
 
             // if task cooldown is finished, put task back into max heap

@@ -53,33 +53,33 @@ class Solution {
 public:
     int leastInterval(vector<char>& tasks, int n) {
         // Count frequencies
-        unordered_map<char, int> t_map;
+        unordered_map<char, int> tMap;
         for (char t : tasks) 
         {
-            if (t_map.find(t) != t_map.end()) 
+            if (tMap.find(t) != tMap.end()) 
             {
-                t_map[t] += 1;
+                tMap[t] += 1;
             } 
             else 
             {
-                t_map[t] = 1;
+                tMap[t] = 1;
             }
         }
 
-        int max_freq = 0;
-        for (auto& [task, freq] : t_map) 
-            max_freq = max(max_freq, freq);
+        int maxFreq = 0;
+        for (auto& [task, freq] : tMap) 
+            maxFreq = max(maxFreq, freq);
         
 
-        int max_count = 0;
-        for (auto& [task, freq] : t_map) 
+        int maxCount = 0;
+        for (auto& [task, freq] : tMap) 
         {
-            if (freq == max_freq) 
-                max_count++;
+            if (freq == maxFreq) 
+                maxCount++;
         }
 
         // The intuition is really whether we can fill the gaps or not or whether
         // we have to idle
-        return max((int)tasks.size(), ((max_freq - 1) * (n + 1) + max_count));
+        return max((int)tasks.size(), ((maxFreq - 1) * (n + 1) + maxCount));
     }
 };

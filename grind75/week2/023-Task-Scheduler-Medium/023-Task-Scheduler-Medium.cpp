@@ -54,24 +54,28 @@ public:
     int leastInterval(vector<char>& tasks, int n) {
         // Count frequencies and sort by most frequent
         unordered_map<char, int> t_map;
-        for (char t : tasks) {
-            if (t_map.find(t) != t_map.end()) {
+        for (char t : tasks) 
+        {
+            if (t_map.find(t) != t_map.end()) 
+            {
                 t_map[t] += 1;
-            } else {
+            } 
+            else 
+            {
                 t_map[t] = 1;
             }
         }
 
         int max_freq = 0;
-        for (auto& [task, freq] : t_map) {
+        for (auto& [task, freq] : t_map) 
             max_freq = max(max_freq, freq);
-        }
+        
 
         int max_count = 0;
-        for (auto& [task, freq] : t_map) {
-            if (freq == max_freq) {
+        for (auto& [task, freq] : t_map) 
+        {
+            if (freq == max_freq) 
                 max_count++;
-            }
         }
 
         // The intuition is really whether we can fill the gaps or not or whether

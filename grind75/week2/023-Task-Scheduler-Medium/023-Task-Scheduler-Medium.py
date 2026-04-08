@@ -20,7 +20,7 @@ class Solution:
                 if cnt:
                     cooldown.append([cnt, time + n])
 
-            # if task cooldown is finished, put task back into q
+            # if task cooldown is finished, put task back into max heap
             if cooldown and cooldown[0][1] == time:
                 heapq.heappush(max_heap, cooldown.popleft()[0])
         return time

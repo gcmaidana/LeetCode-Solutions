@@ -6,22 +6,23 @@ class Solution:
         # Sort by freq (largest to smallest), use maxHeap and q
         # when we process a task, we add it to the q along with the time that the task is done
         count = Counter(tasks)
-        maxHeap = [-cnt for cnt in count.values()]
-        heapq.heapify(maxHeap)
+        max_heap = [-cnt for cnt in count.values()]
+        heapq.heapify(max_heap)
 
         time = 0
-        q = deque() # pair is -cnt and idleTime
+        cooldown = deque() # [remaining_count, available_time]
 
-        while maxHeap or q:
+        while max_heap or cooldown:
             time += 1
 
-            if maxHeap:
-                cnt = 1 + heapq.heappop(maxHeap)
+            if max_heap:
+                cnt = 1 + heapq.heappop(max_heap)
                 if cnt:
-                    q.append([cnt, time + n])
+                    cooldown.append([cnt, time + n])
 
-            if q and q[0][1] == time:
-                heapq.heappush(maxHeap, q.popleft()[0])
+            # if task cooldown is finished, put task back into q
+            if cooldown and cooldown[0][1] == time:
+                heapq.heappush(max_heap, cooldown.popleft()[0])
         return time
 
 # Most optimal approach

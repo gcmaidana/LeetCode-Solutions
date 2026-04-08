@@ -52,7 +52,7 @@ public:
 class Solution {
 public:
     int leastInterval(vector<char>& tasks, int n) {
-        // Count frequencies and sort by most frequent
+        // Count frequencies
         unordered_map<char, int> t_map;
         for (char t : tasks) 
         {

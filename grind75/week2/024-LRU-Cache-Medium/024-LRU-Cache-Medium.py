@@ -30,9 +30,8 @@ class LRUCache:
 
         return node.val
 
-    # if key already exists, remove the node and add it back the new node with same value,
-    # because it's outside of the if-statement, we create the node regardless if it exists or not without
-    # issue
+    # if key already exists, remove the node and add back the new node with the given value
+    # because this is outside of the if statement, we create the node regardless if it exists or not without issue
     def put(self, key: int, value: int) -> None:
         if key in self.cache:
             old_node = self.cache[key]

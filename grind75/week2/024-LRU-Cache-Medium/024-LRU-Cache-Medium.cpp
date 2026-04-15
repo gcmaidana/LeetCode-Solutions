@@ -17,8 +17,9 @@ public:
 
 class LRUCache {
 public:
-    int capacity;
 
+    int capacity;
+    
     // key -> Node*
     unordered_map<int, Node*> cache;
 
@@ -27,74 +28,74 @@ public:
     Node* left;
     Node* right;
 
+
     LRUCache(int capacity) {
         this->capacity = capacity;
 
         left = new Node(-1, -1);
         right = new Node(-1, -1);
-
         left->next = right;
         right->prev = left;
     }
     
-    // When we get a value, we need to put it to the end of doubly linked list
-    // to mark it as most recently used, then finally we can return its value assuming it exists
+    // When we get a value, we need to put it to end of the doubly linked list
+    // to mark it as most recently used, then we can finally return its value assuming it exists
     int get(int key) {
-        if (cache.find(key) == cache.end()) 
+        if(cache.find(key) == cache.end())
             return -1;
 
         Node* node = cache[key];
         remove(node);
         add(node);
-
         return node->val;
     }
     
     // if key already exists, remove the node and add back the new node with the given value
-    // because this is outside of the if statement, we create the node regardless if it exists or not without issue
+    // Because this is outside of the if statement, we create the node regardless if it exists or not without issue
     void put(int key, int value) {
-        if (cache.find(key) != cache.end()) 
+        if(cache.find(key) != cache.end())
         {
-            Node* old_node = cache[key];
-            remove(old_node);
+            Node* oldNode = cache[key];
+            remove(oldNode);
         }
 
         Node* node = new Node(key, value);
-        cache[key] = node; // overwrite
+        cache[key] = node; 
         add(node);
 
         // handle capacity exceeded
-        if (cache.size() > capacity) 
+        if(cache.size() > capacity)
         {
-            Node* delete_node = left->next;
-            remove(delete_node);
-            cache.erase(delete_node->key);
+            Node* deleteNode = left->next;
+            remove(deleteNode);
+            cache.erase(deleteNode->key);
         }
+        
     }
 
 private:
     // for removing node from doubly linked list
-    // for ex, if we have 1 -> 2 -> 3
-    // 1 need to point to 3 and 3 points to 1 assuming we want to remove 2
-    void remove(Node* node) 
+    // for ex, if  we have 1 <-> 2 <-> 3
+    // 1 needs to point to 3, and 3 points to 1 assuming we want to remove 2
+    void remove(Node* node)
     {
         node->prev->next = node->next;
         node->next->prev = node->prev;
     }
 
     // for adding node to doubly linked list
-    // add to end of the list since we can define that as most recently used
-    void add(Node* node) 
+    // add to the end of the list since we can define that as msot recently used
+    void add(Node* node)
     {
-        Node* prev_end = right->prev;
 
-        prev_end->next = node;
-        node->prev = prev_end;
+        Node* prevEnd = right->prev;
 
+        prevEnd->next = node;
+        node->prev = prevEnd;
+        
         node->next = right;
         right->prev = node;
     }
-
 };
 
 /**
